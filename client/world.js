@@ -46,24 +46,43 @@ $(document).ready(function(){
     
     var maps = [
                     [
-                        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-                        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+                    ] ,
+                    [
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,13,14,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,15,16,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,17,18,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,4,5,6,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,7,8,9,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,7,8,9,1,1,1,1,1],
+                        [1,1,1,1,1,1,2,2,2,1,1,1,7,8,9,1,1,1,1,1],
+                        [1,1,1,1,1,1,2,2,2,1,1,1,7,8,9,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,7,8,9,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,7,8,9,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,10,11,12,1,1,1,1,1],
+                        [1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
                     ]   
                 ];
-    var world = maps[0];
+    var world = maps[1];
     
     var displayWorld = function() {
         var worldOutput = '';
@@ -72,11 +91,23 @@ $(document).ready(function(){
             for (var j=0; j<world[i].length; j++){
                 if(world[i][j]==0) worldOutput += '<div class="empty standardTile"></div>';
                 if(world[i][j]==1) worldOutput += '<div class="grass standardTile"></div>';
-                if(world[i][j]==2) worldOutput += '<div class="grass standardTile"></div>';
-                if(world[i][j]==3) worldOutput += '<div class="rock standardTile"></div>';
-                if(world[i][j]==4) worldOutput += '<div class="path standardTile"></div>';
-                if(world[i][j]==5) worldOutput += '<div class="wall standardTile"></div>';
-                if(world[i][j]==9) worldOutput += '<div id="player" class="player standardTile"></div>';
+                if(world[i][j]==2) worldOutput += '<div class="tallGrass standardTile"><div class="tallGrassBottom"></div></div>';
+                if(world[i][j]==3) worldOutput += '<div class="tree standardTile"></div>';
+                if(world[i][j]==4) worldOutput += '<div class="pathTopLeft standardTile"></div>';
+                if(world[i][j]==5) worldOutput += '<div class="pathTop standardTile"></div>';
+                if(world[i][j]==6) worldOutput += '<div class="pathTopRight standardTile"></div>';
+                if(world[i][j]==7) worldOutput += '<div class="pathLeft standardTile"></div>';
+                if(world[i][j]==8) worldOutput += '<div class="pathMiddle standardTile"></div>';
+                if(world[i][j]==9) worldOutput += '<div class="pathRight standardTile"></div>';
+                if(world[i][j]==10) worldOutput += '<div class="pathBottomLeft standardTile"></div>';
+                if(world[i][j]==11) worldOutput += '<div class="pathBottom standardTile"></div>';
+                if(world[i][j]==12) worldOutput += '<div class="pathBottomRight standardTile"></div>';
+                if(world[i][j]==13) worldOutput += '<div class="grass standardTile"><div class="houseTopLeft standardTile"></div></div>';
+                if(world[i][j]==14) worldOutput += '<div class="grass standardTile"><div class="houseTopRight standardTile"></div></div>';
+                if(world[i][j]==15) worldOutput += '<div class="grass standardTile"><div class="houseLeft standardTile"></div></div>';
+                if(world[i][j]==16) worldOutput += '<div class="grass standardTile"><div class="houseRight standardTile"></div></div>';
+                if(world[i][j]==17) worldOutput += '<div class="grass standardTile"><div class="houseBottomLeft standardTile"></div></div>';
+                if(world[i][j]==18) worldOutput += '<div class="grass standardTile"><div class="houseBottomRight standardTile"></div></div>';
             }
             worldOutput += '</div>';
         }

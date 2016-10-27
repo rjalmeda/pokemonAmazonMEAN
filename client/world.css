@@ -29,17 +29,119 @@ div.row {
 div.standardTile {
     border: 0px;
     display:inline-block;
+    position: relative;
 }
 .grass {
-    background-color: rgb(182, 226, 160);
+    background: url(assets/pics/tileset/PokeTileset.png);
+    background-position: 0px -49px;
+    width: 32px;
+    height: 32px;
 }
-.path {
-    background-color: rgb(233, 219, 172);
+.tallGrass {
+    background: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -33px -82px;
 }
+.tallGrassBottom {
+    background: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -66px -49px;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    z-index: 2;
+}
+.pathTopLeft {
+    background: url(assets/pics/tileset/PokeTileset.png);
+    background-position: 0px 0px;
+}
+.pathTop {
+    background: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -8px 0px;
+}
+.pathTopRight {
+    background: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -16px 0px;
+}
+.pathLeft {
+    background: url(assets/pics/tileset/PokeTileset.png);
+    background-position: 0px -8px;
+}
+.pathMiddle {
+    background: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -8px -8px;
+}
+.pathRight {
+    background: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -16px -8px;
+}
+.pathBottomLeft {
+    background: url(assets/pics/tileset/PokeTileset.png);
+    background-position: 0px -16px;
+}
+.pathBottom {
+    background: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -8px -16px;
+}
+.pathBottomRight {
+    background: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -16px -16px;
+}
+/*
+path grid edges and middle
+4,5,6
+7,8,9
+10,11,12
+
+4,6,10,12 are the corners
+5,7,9,11 are edges
+8 is middle of the path
+*/
+
+/*tree 3*/
 .tree {
-    background-image: url(assets/pics/tileset/tileset.png);
-    
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -49px 0px;
+    z-index: 2;
 }
+
+.houseTopLeft {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -100px 0px;
+    z-index: 2;
+    position: absolute;
+}
+.houseTopRight {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -132px 0px;
+    z-index: 2;
+}
+.houseLeft {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -100px -32px;
+    z-index: 2;
+}
+.houseRight {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -132px -32px;
+    z-index: 2;
+}
+.houseBottomLeft {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -100px -64px;
+    z-index: 2;
+}
+.houseBottomRight {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -132px -64px;
+    z-index: 2;
+}
+
+/*
+house Tiles
+13,14
+15,16
+17,18
+*/
+
 #player {
     background: url(assets/pics/tileset/player.png);
     position: absolute;
@@ -47,6 +149,7 @@ div.standardTile {
     height: 32px;
     -webkit-animation: walk-left 1.0s steps(3) infinite;
     animation: walk-right 0.4s steps(3) infinite;
+    z-index: 1;
 }
 
 @-webkit-keyframes walk-left {
