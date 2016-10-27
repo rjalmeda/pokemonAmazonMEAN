@@ -113,26 +113,37 @@ path grid edges and middle
     background-image: url(assets/pics/tileset/PokeTileset.png);
     background-position: -132px 0px;
     z-index: 2;
+    position: absolute;
 }
 .houseLeft {
     background-image: url(assets/pics/tileset/PokeTileset.png);
     background-position: -100px -32px;
     z-index: 2;
+    position: absolute;
 }
 .houseRight {
     background-image: url(assets/pics/tileset/PokeTileset.png);
     background-position: -132px -32px;
     z-index: 2;
+    position: absolute;
 }
 .houseBottomLeft {
     background-image: url(assets/pics/tileset/PokeTileset.png);
     background-position: -100px -64px;
-    z-index: 2;
+    z-index: 0;
+    position: absolute;
 }
 .houseBottomRight {
     background-image: url(assets/pics/tileset/PokeTileset.png);
     background-position: -132px -64px;
-    z-index: 2;
+    z-index: 0;
+    position: absolute;
+}
+.houseDoor {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -100px -90px;
+    position: absolute;
+    z-index: 0;
 }
 
 /*
@@ -153,54 +164,54 @@ house Tiles
 }
 
 @-webkit-keyframes walk-left {
-    from { background-position: 0px -32px; }
-    to { background-position: -96px -32px; }
+    from { background-position: 0px -33px; }
+    to { background-position: -96px -33px; }
 }
 @keyframes walk-left {
-    from { background-position: 0px -32px; }
-    to { background-position: -96px -32px; }
+    from { background-position: 0px -33px; }
+    to { background-position: -96px -33px; }
 }
 @-webkit-keyframes stand-left {
-    from { background-position: -32px -32px; }
-    to { background-position: -64px -32px; }
+    from { background-position: -32px -33px; }
+    to { background-position: -64px -33px; }
 }
 @keyframes stand-left {
-    from { background-position: -32px -32px; }
-    to { background-position: -64px -32px; }
+    from { background-position: -32px -33px; }
+    to { background-position: -64px -33px; }
 }
 
 @-webkit-keyframes walk-up {
-    from { background-position: 0px -96px; }
-    to { background-position: -96px -96px; }
+    from { background-position: 0px -97px; }
+    to { background-position: -96px -97px; }
 }
 @keyframes walk-up {
-    from { background-position: 0px -96px; }
-    to { background-position: -96px -96px; }
+    from { background-position: 0px -97px; }
+    to { background-position: -96px -97px; }
 }
 @-webkit-keyframes stand-up {
-    from { background-position: -32px -96px; }
-    to { background-position: -64px -96px; }
+    from { background-position: -32px -97px; }
+    to { background-position: -64px -97px; }
 }
 @keyframes stand-up {
-    from { background-position: -32px -96px; }
-    to { background-position: -64px -96px; }
+    from { background-position: -32px -97px; }
+    to { background-position: -64px -97px; }
 }
 
 @-webkit-keyframes walk-right {
-    from { background-position: 0px -64px; }
-    to { background-position: -96px -64px; }
+    from { background-position: 0px -65px; }
+    to { background-position: -96px -65px; }
 }
 @keyframes walk-right {
-    from { background-position: 0px -64px; }
-    to { background-position: -96px -64px; }
+    from { background-position: 0px -65px; }
+    to { background-position: -96px -65px; }
 }
 @-webkit-keyframes stand-right {
-    from { background-position: -32px -64px; }
-    to { background-position: -64px -64px; }
+    from { background-position: -32px -65px; }
+    to { background-position: -64px -65px; }
 }
 @keyframes stand-right {
-    from { background-position: -32px -64px; }
-    to { background-position: -64px -64px; }
+    from { background-position: -32px -65px; }
+    to { background-position: -64px -65px; }
 }
 
 @-webkit-keyframes walk-down {
@@ -213,7 +224,7 @@ house Tiles
 }
 @-webkit-keyframes stand-down {
     from { background-position: -32px -0px; }
-    to { background-position: -96px -0p64 }
+    to { background-position: -96px -0px }
 }
 @keyframes stand-down {
     from { background-position: -32px -0px; }
