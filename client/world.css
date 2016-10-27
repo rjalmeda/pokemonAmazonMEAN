@@ -14,6 +14,14 @@ div#gameWindow {
 }
 div.world {
     position: absolute;
+    top: 0px;
+    left: 0px;
+}
+div#battlePartial {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 100;
 }
 div.row {
     margin: 0px;

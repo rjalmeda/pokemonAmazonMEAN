@@ -13,7 +13,11 @@ app.config(function($routeProvider){
         templateUrl: 'partials/lobby.html'
     })
     .when('/world', {
-        templateUrl: 'partials/world.html'
+        templateUrl: 'partials/world.html',
+        controller: 'gameController'
+    })
+    .when('/battle', {
+        templateUrl: 'partials/battle.html'
     })
     .otherwise({
         redirectTo: '/login'

@@ -82,7 +82,7 @@ $(document).ready(function(){
     ];
     var currentMap = 1;
     var world = maps[currentMap];
-    console.log(maps[currentMap][0][0]);
+    
     var displayWorld = function() {
         var worldOutput = '';
         for (var i=0; i<world.length; i++){
@@ -113,6 +113,10 @@ $(document).ready(function(){
         $('div.world').html(worldOutput);
     };
     displayWorld();
+    
+    $('#battlePartial').hide();
+    
+    var disableControls = false;
     
     var passable = [1,2,4,5,6,7,8,9,10,11,12,13,14,17];
     
@@ -382,7 +386,29 @@ $(document).ready(function(){
                 if (playerSurroundings[1][1] === 2){
                     var encounter = Math.floor(Math.random()*101);
                     if (encounter < encounterRate){
-                        alert('pokemon attacks!')
+                        console.log('trigger battle')
+                        $('#battlePartial').show('slow', function(){
+                            $('.pokemon1img').hide(0, function(){
+                                $('.pokemon1img').html("<img src='./assets/pics/back/25.png' height='280'>")
+                            });
+                            $('.pokemon2img').hide(0, function(){
+                                $('.pokemon2img').html("<img src='./assets/pics/front/16.png' height='150'>");
+                            });
+                            disableControls = true;
+                            stopPlayer();
+                            console.log('start battle functions!')
+                            setTimeout(function(){
+                                $('.pokemon2img').show('slow', function(){
+                                    $('#status').prepend('A wild Pidgy appears!\n')
+                                })
+                            }, 2000);
+                            setTimeout(function(){
+                                $('.pokemon1img').show('slow', function(){
+                                    $('#status').prepend('Go Pikachu! \n')
+                                })
+                            }, 4000);
+                        });
+//                        document.getElementById('battlePartial').style.display = 'block';
 //                        if encounter is less than the encounter Rate run PokemonEncounter function
 //                        before PokemonEncounter function runs, disable directional controls and 
 //                        use only mouse controls.  show hidden fight screen.  after fight is successful
@@ -393,50 +419,61 @@ $(document).ready(function(){
         }
     };
     
+    var stopPlayer = function(){
+        if(wherePlayer.movingX || wherePlayer.movingY){
+            wherePlayer.movingX = false;
+            wherePlayer.movingY = false;
+        }
+    }
+    
     document.onkeydown = function(e){
-        if(e.keyCode==37){
-            if(!wherePlayer.movingLeft && !wherePlayer.movingUp && !wherePlayer.movingRight && !wherePlayer.movingDown ){
-                wherePlayer.movingX = 'left';
-            }
-        };
-        if(e.keyCode==38){
-            if(!wherePlayer.movingLeft && !wherePlayer.movingUp && !wherePlayer.movingRight && !wherePlayer.movingDown ){
-                wherePlayer.movingY = 'up';
-            }
-        };
-        if(e.keyCode==39){
-            if(!wherePlayer.movingLeft && !wherePlayer.movingUp && !wherePlayer.movingRight && !wherePlayer.movingDown ){
-                wherePlayer.movingX = 'right';
-            }
-        };
-        if(e.keyCode==40){
-            if(!wherePlayer.movingLeft && !wherePlayer.movingUp && !wherePlayer.movingRight && !wherePlayer.movingDown ){
-                wherePlayer.movingY = 'down';
-            }
-        };
+        if (!disableControls){
+            if(e.keyCode==37){
+                if(!wherePlayer.movingLeft && !wherePlayer.movingUp && !wherePlayer.movingRight && !wherePlayer.movingDown ){
+                    wherePlayer.movingX = 'left';
+                }
+            };
+            if(e.keyCode==38){
+                if(!wherePlayer.movingLeft && !wherePlayer.movingUp && !wherePlayer.movingRight && !wherePlayer.movingDown ){
+                    wherePlayer.movingY = 'up';
+                }
+            };
+            if(e.keyCode==39){
+                if(!wherePlayer.movingLeft && !wherePlayer.movingUp && !wherePlayer.movingRight && !wherePlayer.movingDown ){
+                    wherePlayer.movingX = 'right';
+                }
+            };
+            if(e.keyCode==40){
+                if(!wherePlayer.movingLeft && !wherePlayer.movingUp && !wherePlayer.movingRight && !wherePlayer.movingDown ){
+                    wherePlayer.movingY = 'down';
+                }
+            };  
+        }
     };
     
     document.onkeyup = function(e){
-        if(e.keyCode==37){
-            wherePlayer.movingX = false;
-            wherePlayer.lastDirX = 'left';
-            wherePlayer.lastDir = 'left';
-        };
-        if(e.keyCode==38){
-            wherePlayer.movingY = false;
-            wherePlayer.lastDirY = 'up';
-            wherePlayer.lastDir = 'up';
-        };
-        if(e.keyCode==39){
-            wherePlayer.movingX = false;
-            wherePlayer.lastDirX = 'right';
-            wherePlayer.lastDir = 'right';
-        };
-        if(e.keyCode==40){
-            wherePlayer.movingY = false;
-            wherePlayer.lastDirY = 'down';
-            wherePlayer.lastDir = 'down';
-        };
+        if (!disableControls){
+            if(e.keyCode==37){
+                wherePlayer.movingX = false;
+                wherePlayer.lastDirX = 'left';
+                wherePlayer.lastDir = 'left';
+            };
+            if(e.keyCode==38){
+                wherePlayer.movingY = false;
+                wherePlayer.lastDirY = 'up';
+                wherePlayer.lastDir = 'up';
+            };
+            if(e.keyCode==39){
+                wherePlayer.movingX = false;
+                wherePlayer.lastDirX = 'right';
+                wherePlayer.lastDir = 'right';
+            };
+            if(e.keyCode==40){
+                wherePlayer.movingY = false;
+                wherePlayer.lastDirY = 'down';
+                wherePlayer.lastDir = 'down';
+            };
+        }
     };
     startAnimating(30);
 })
