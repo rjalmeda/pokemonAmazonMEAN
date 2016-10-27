@@ -1,0 +1,118 @@
+/*tilesets*/
+* {
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+div#gameWindow {
+    position: relative;
+    border: 5px black solid;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 640px;
+    height: 480px;
+}
+div.world {
+    position: absolute;
+}
+div.row {
+    margin: 0px;
+    height: 32px;
+    display: block;
+}
+    div.row div {
+        width: 32px;
+        height: 32px;
+        display: inline-block;
+
+    }
+div.standardTile {
+    border: 0px;
+    display:inline-block;
+}
+.grass {
+    background-color: rgb(182, 226, 160);
+}
+.path {
+    background-color: rgb(233, 219, 172);
+}
+.tree {
+    background-image: url(assets/pics/tileset/tileset.png);
+    
+}
+#player {
+    background: url(assets/pics/tileset/player.png);
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    -webkit-animation: walk-left 1.0s steps(3) infinite;
+    animation: walk-right 0.4s steps(3) infinite;
+}
+
+@-webkit-keyframes walk-left {
+    from { background-position: 0px -32px; }
+    to { background-position: -96px -32px; }
+}
+@keyframes walk-left {
+    from { background-position: 0px -32px; }
+    to { background-position: -96px -32px; }
+}
+@-webkit-keyframes stand-left {
+    from { background-position: -32px -32px; }
+    to { background-position: -64px -32px; }
+}
+@keyframes stand-left {
+    from { background-position: -32px -32px; }
+    to { background-position: -64px -32px; }
+}
+
+@-webkit-keyframes walk-up {
+    from { background-position: 0px -96px; }
+    to { background-position: -96px -96px; }
+}
+@keyframes walk-up {
+    from { background-position: 0px -96px; }
+    to { background-position: -96px -96px; }
+}
+@-webkit-keyframes stand-up {
+    from { background-position: -32px -96px; }
+    to { background-position: -64px -96px; }
+}
+@keyframes stand-up {
+    from { background-position: -32px -96px; }
+    to { background-position: -64px -96px; }
+}
+
+@-webkit-keyframes walk-right {
+    from { background-position: 0px -64px; }
+    to { background-position: -96px -64px; }
+}
+@keyframes walk-right {
+    from { background-position: 0px -64px; }
+    to { background-position: -96px -64px; }
+}
+@-webkit-keyframes stand-right {
+    from { background-position: -32px -64px; }
+    to { background-position: -64px -64px; }
+}
+@keyframes stand-right {
+    from { background-position: -32px -64px; }
+    to { background-position: -64px -64px; }
+}
+
+@-webkit-keyframes walk-down {
+    from { background-position: 0px -0px; }
+    to { background-position: -96px -0px; }
+}
+@keyframes walk-down {
+    from { background-position: 0px -0px; }
+    to { background-position: -96px -0px; }
+}
+@-webkit-keyframes stand-down {
+    from { background-position: -32px -0px; }
+    to { background-position: -96px -0p64 }
+}
+@keyframes stand-down {
+    from { background-position: -32px -0px; }
+    to { background-position: -64px -0px; }
+}
