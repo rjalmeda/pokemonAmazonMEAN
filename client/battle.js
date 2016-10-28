@@ -9,24 +9,15 @@ var game = {
     }
 
 };
-class PlayerConstructor{
-    constructor(name,id){
-        this.name = name;
-        this.id = id;
-        this.pokemons = [];
-        this.addPokemon = function(pokemon){
-        this.pokemons.push(pokemon);
-        };
-        this.playerslot = 0;
-        this.currentpokemon = {};
-        this.currentpokemonslot = 0;
-    }
-};
 
-player1 = new PlayerConstructor('Player 1',1);
-player2 = new PlayerConstructor('Player 2',2);
+var conlog = function(){
+    console.log(enemyPokemon);
+    enemyPokemon.modified = 'yes it is modified'
+}
 
-var hitsound = new Audio('punch.mp3');
+console.log(currentPlayer);
+console.log(enemyPokemon);
+var hitsound = new Audio('assets/music/fx/punch.mp3');
 
 //Pokemon Type Objects
 var pokemontype = {
@@ -397,20 +388,11 @@ function calcmultiplier(attacker,defender){
     var atkarr = attacker.types;
     var defarr = defender.types;
     for (var atkkey in atkarr){
-        atk = atkarr[atkkey].type.name;
-        for (var atktype in pokemontype){
-            if (atk == atktype){
-                for (var defkey in defarr){
-                    def = defarr[defkey].type.name;
-                    for (var deftype in pokemontype){
-                        if (def == deftype){
-                            console.log(atk+' vs '+def);
-                            console.log(pokemontype[atk][def])
-                            multiplier = multiplier * pokemontype[atk][def];
-                        }
-                    }
-                }
-            }
+        
+    }
+    for (var atkkey in atkarr){
+        for (var defkey in defarr){
+            multplier = multiplier * pokemontype[atkkey][defkey];
         }
     };
     return multiplier;
@@ -446,25 +428,25 @@ function animate(atk_id,def_id){
     setTimeout(function(){$('.pokemon'+def_id+'img').animate({left: def_mot2},20)},90);
 };
 
-function checkready(){
-//    var alreadyready = false;
-    if (player1.pokemons.length === 3 && player2.pokemons.length === 3){
-//            if (!alreadyready){
-//                var bgmusic = new Audio('music.mp3');
-//                bgmusic.play(); 
-//            };
-//        alreadyready = true;
-        return true;
-    };
-    return false;
-}
+//function checkready(){
+////    var alreadyready = false;
+//    if (player1.pokemons.length === 3 && player2.pokemons.length === 3){
+////            if (!alreadyready){
+////                var bgmusic = new Audio('music.mp3');
+////                bgmusic.play(); 
+////            };
+////        alreadyready = true;
+//        return true;
+//    };
+//    return false;
+//}
 
 function playeratk(attacker, defender){
-    if (!checkready()){
-        return ($('#status').prepend('Players are not ready yet \n\n\n\n'))
-    }
-    animate(attacker.id, defender.id);
-    var multiplier = calcmultiplier(attacker.currentpokemon, defender.currentpokemon);
+//    if (!checkready()){
+//        return ($('#status').prepend('Players are not ready yet \n\n\n\n'))
+//    }
+    animate(1, 2);
+    var multiplier = calcmultiplier(attacker, defender);
     if (multiplier == 0){
         $('#status').prepend('Attack has no effect'+'\n');
     } else if (multiplier > 0 && multiplier < 1) {
@@ -476,52 +458,52 @@ function playeratk(attacker, defender){
     } else {
         $('#status').prepend('\n')
     };
-    if (defender.currentpokemon.id == undefined){
+    if (defender.id == undefined){
         return ($('#status').prepend(attacker.name+' already won.  Stop beating a dead pokemon. \n\n\n'));
     };
-    if (attacker.currentpokemon.id == undefined) {
+    if (attacker.id == undefined) {
         return ($('#status').prepend('What are you doing '+attacker.name+'?  You already lost.\n'+defender.name+' already won. \n \n'));
     };
     console.log(defender.currentpokemon.def);
-    var atk = Math.floor(attacker.currentpokemon.atk*attacker.currentpokemon.atk/defender.currentpokemon.def*multiplier*.25);
+    var atk = Math.floor(attacker.atk*attacker.atk/defender.def*multiplier*.25);
     if (atk > 0){
         hitsound.play()
     };
-    $('#status').prepend(attacker.currentpokemon.name+' does '+atk+' damage. \n');
-    $('#status').prepend(attacker.currentpokemon.name+' attacks '+defender.currentpokemon.name+'\n');
-    defender.currentpokemon.hp -= atk;
-    $('#current'+defender.id+'hp').html(defender.currentpokemon.hp);
-    var img_mod = '';
-    if (defender.id === 1) {
-        img_mod = 'back/';
-        height_mod = "height='280'";
-    } else if (defender.id === 2) {
-        img_mod = '';
-        height_mod = "height='150'";
-    }
-    if (defender.currentpokemon.hp<1&&defender.currentpokemonslot<2){
-        defender.currentpokemonslot += 1;
-        defender.currentpokemon = defender.pokemons[defender.currentpokemonslot];
-        $('#current'+defender.id+'hp').html(defender.currentpokemon.hp);
-        pic1url = "<img src=https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+img_mod+defender.currentpokemon.id+".png "+height_mod+" >"
-        $('.pokemon'+defender.id+'img').html(pic1url);
-    };
-    if (defender.currentpokemon.hp<1&&defender.currentpokemonslot==2){
-        $('#status').prepend('Player '+defender.id+' loses\n\n\n\n');
-        picurl = '';
-        healthzero = 0;
-        $('.pokemon'+defender.id+'img').html(picurl);
-        $('#current'+defender.id+'hp').html(healthzero);
-        defender.currentpokemon = {};
-    };
+    $('#status').prepend(attacker.name+' does '+atk+' damage. \n');
+    $('#status').prepend(attacker.name+' attacks '+defender.name+'\n');
+    defender.hp -= atk;
+    $('#current'+2+'hp').html(defender.hp);
+//    var img_mod = '';
+//    if (defender.id === 1) {
+//        img_mod = 'back/';
+//        height_mod = "height='280'";
+//    } else if (defender.id === 2) {
+//        img_mod = '';
+//        height_mod = "height='150'";
+//    }
+//    if (defender.currentpokemon.hp<1&&defender.currentpokemonslot<2){
+//        defender.currentpokemonslot += 1;
+//        defender.currentpokemon = defender.pokemons[defender.currentpokemonslot];
+//        $('#current'+defender.id+'hp').html(defender.currentpokemon.hp);
+//        pic1url = "<img src=https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+img_mod+defender.currentpokemon.id+".png "+height_mod+" >"
+//        $('.pokemon'+defender.id+'img').html(pic1url);
+//    };
+//    if (defender.currentpokemon.hp<1&&defender.currentpokemonslot==2){
+//        $('#status').prepend('Player '+defender.id+' loses\n\n\n\n');
+//        picurl = '';
+//        healthzero = 0;
+//        $('.pokemon'+defender.id+'img').html(picurl);
+//        $('#current'+defender.id+'hp').html(healthzero);
+//        defender.currentpokemon = {};
+//    };
 };
 
-$(document).ready(function(){
-    for (var i = 1; i<152; i++){
-    $("#player1_pokemon_list").append("<img class='pokemonimg' player='1' id="+i+" src=https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+i+".png>");
-    $("#player2_pokemon_list").append("<img class='pokemonimg' player='2' id="+i+" src=https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+i+".png>")};
-    
-});
+//$(document).ready(function(){
+//    for (var i = 1; i<152; i++){
+//    $("#player1_pokemon_list").append("<img class='pokemonimg' player='1' id="+i+" src=https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+i+".png>");
+//    $("#player2_pokemon_list").append("<img class='pokemonimg' player='2' id="+i+" src=https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+i+".png>")};
+//    
+//});
 
 //$(document).on('click', 'img', function(){
 //    var player_id = $(this).attr('player');

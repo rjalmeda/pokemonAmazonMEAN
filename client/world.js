@@ -64,9 +64,9 @@ $(document).ready(function(){
         ] ,
         [  
             [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,13,14,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,15,16,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,17,18,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1],
+            [1,1,13,14,1,19,20,21,1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,1,15,16,1,22,23,24,1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,1,17,18,1,25,26,27,3,1,1,1,1,1,1,1,1,1,1,1],
             [1,1,1,1,1,1,1,1,1,1,1,1,4,5,6,1,1,1,1,1],
             [1,1,1,1,1,1,1,1,1,1,1,1,7,8,9,1,1,1,1,1],
             [1,1,1,1,1,1,1,1,1,1,1,1,7,8,9,1,1,1,1,1],
@@ -107,6 +107,15 @@ $(document).ready(function(){
                 if(world[i][j]==16) worldOutput += '<div class="grass standardTile"><div class="houseRight standardTile"></div></div>';
                 if(world[i][j]==17) worldOutput += '<div class="grass standardTile"><div class="houseDoor standardTile"><div class="houseBottomLeft standardTile"></div></div></div>';
                 if(world[i][j]==18) worldOutput += '<div class="grass standardTile"><div class="houseBottomRight standardTile"></div></div>';
+                if(world[i][j]==19) worldOutput += '<div class="grass standardTile"><div class="pokeLabTopLeft standardTile"></div></div>';
+                if(world[i][j]==20) worldOutput += '<div class="grass standardTile"><div class="pokeLabTop standardTile"></div></div>';
+                if(world[i][j]==21) worldOutput += '<div class="grass standardTile"><div class="pokeLabTopRight standardTile"></div></div>';
+                if(world[i][j]==22) worldOutput += '<div class="grass standardTile"><div class="pokeLabLeft standardTile"></div></div>';
+                if(world[i][j]==23) worldOutput += '<div class="grass standardTile"><div class="pokeLabMiddle standardTile"></div></div>';
+                if(world[i][j]==24) worldOutput += '<div class="grass standardTile"><div class="pokeLabRight standardTile"></div></div>';
+                if(world[i][j]==25) worldOutput += '<div class="grass standardTile"><div class="pokeLabBottomLeft standardTile"></div></div>';
+                if(world[i][j]==26) worldOutput += '<div class="grass standardTile"><div class="pokeLabBottom standardTile"></div></div>';
+                if(world[i][j]==27) worldOutput += '<div class="grass standardTile"><div class="pokeLabBottomRight standardTile"></div></div>';
             }
             worldOutput += '</div>';
         }
@@ -117,8 +126,9 @@ $(document).ready(function(){
     $('#battlePartial').hide();
     
     var disableControls = false;
+    var battleTriggered = false;
     
-    var passable = [1,2,4,5,6,7,8,9,10,11,12,13,14,17];
+    var passable = [1,2,4,5,6,7,8,9,10,11,12,13,14,17,19,20,21,26];
     
     var wherePlayer = {
         movingX: false,
@@ -294,7 +304,7 @@ $(document).ready(function(){
         return callback();
     };
     probeSurroundings(0, 0, function(){
-        console.log('initial probe');
+//        console.log('initial probe');
     });
     var displayPlayer = function(){
         document.getElementById('player').style.left = wherePlayer.x+'px';
@@ -385,34 +395,31 @@ $(document).ready(function(){
             probeSurroundings(wherePlayer.x, wherePlayer.y, function(){
                 if (playerSurroundings[1][1] === 2){
                     var encounter = Math.floor(Math.random()*101);
-                    if (encounter < encounterRate){
+                    if (encounter < encounterRate && !battleTriggered && enemyReady){
+                        battleTriggered = true;
                         console.log('trigger battle')
                         $('#battlePartial').show('slow', function(){
-                            $('.pokemon1img').hide(0, function(){
-                                $('.pokemon1img').html("<img src='./assets/pics/back/25.png' height='280'>")
-                            });
-                            $('.pokemon2img').hide(0, function(){
-                                $('.pokemon2img').html("<img src='./assets/pics/front/16.png' height='150'>");
-                            });
                             disableControls = true;
                             stopPlayer();
                             console.log('start battle functions!')
                             setTimeout(function(){
                                 $('.pokemon2img').show('slow', function(){
-                                    $('#status').prepend('A wild Pidgy appears!\n')
+                                    $('#battleinfo2').show('fast');
+                                    $('#status').prepend(`A wild ${enemyPokemon.name} appears! \n\n`)
+                                    $('.cry2').html(`<audio autoplay><source src="assets/sounds/${enemyPokemon.id}.ogg"><source src="{assets/sounds/16.mp3"></audio>`);
                                 })
-                            }, 2000);
+                            }, 1500);
                             setTimeout(function(){
-                                $('.pokemon1img').show('slow', function(){
-                                    $('#status').prepend('Go Pikachu! \n')
-                                })
-                            }, 4000);
+                                $('#status').prepend(`Go get em' ${currentPokemon.name}! \n`)
+                                setTimeout(function(){
+                                    $('#status').prepend(`${currentPokemon.name}! \n`)
+                                    $('.pokemon1img').show('slow', function(){
+                                    $('#battleinfo1').show('fast');
+                                    $('.cry1').html(`<audio autoplay><source src="assets/sounds/${currentPokemon.id}.ogg"><source src="{assets/sounds/25.mp3"></audio>`);
+                                    $('.battleControls').slideDown('slow');
+                                })}, 1250);
+                            }, 3200);
                         });
-//                        document.getElementById('battlePartial').style.display = 'block';
-//                        if encounter is less than the encounter Rate run PokemonEncounter function
-//                        before PokemonEncounter function runs, disable directional controls and 
-//                        use only mouse controls.  show hidden fight screen.  after fight is successful
-//                        hide fight screen and re enable directional controls
                     }
                 }
             });

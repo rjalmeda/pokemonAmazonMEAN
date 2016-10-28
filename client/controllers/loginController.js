@@ -12,6 +12,7 @@ app.controller('loginController', function($scope, $location, loginFactory){
             return alert('Password is too short');
         } else {
             loginFactory.login($scope.user, function(data){
+                currentPlayer = data.data.user
                 console.log(data.data);
                 $scope.user = {};
                 if (!data.data.user){
@@ -20,7 +21,7 @@ app.controller('loginController', function($scope, $location, loginFactory){
                 if (data.data.user.eggs.length > 0){
                     $location.url('/splash');
                 } else if (data.data.user) {
-                    $location.user('/lobby');
+                    $location.url('/world');
                 } else {
                     return alert('what happened?');
                 };

@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Untitled Document</title>
+    <script>
+//    global variables
+        var enemyPokemon = 'enemy pokemon';
+        var currentPlayer = 'your player';
+        var currentPokemon = 'your Pokemon';
+        var enemyReady = false;
+    </script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
@@ -22,8 +29,10 @@
 </head>
 <body>
     
-    <div ng-view></div>
+    <div ng-view style="width: 900px;"></div>
+<!--
     <a href="#/world"><button type="button">World!</button></a>
     <a href="#/battle"><button type="battle">Battle!</button></a>
+-->
 </body>
 </html>
