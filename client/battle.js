@@ -1,22 +1,3 @@
-var game = {
-    'players' : [],
-    'deck' : [],
-    'addPlayer' : function(player){
-        game.players.push(player)
-    },
-    'battle': function(player1,player2){
-        
-    }
-
-};
-
-var conlog = function(){
-    console.log(enemyPokemon);
-    enemyPokemon.modified = 'yes it is modified'
-}
-
-console.log(currentPlayer);
-console.log(enemyPokemon);
 var hitsound = new Audio('assets/music/fx/punch.mp3');
 
 //Pokemon Type Objects
@@ -428,18 +409,6 @@ function animate(atk_id,def_id){
     setTimeout(function(){$('.pokemon'+def_id+'img').animate({left: def_mot2},20)},90);
 };
 
-//function checkready(){
-////    var alreadyready = false;
-//    if (player1.pokemons.length === 3 && player2.pokemons.length === 3){
-////            if (!alreadyready){
-////                var bgmusic = new Audio('music.mp3');
-////                bgmusic.play(); 
-////            };
-////        alreadyready = true;
-//        return true;
-//    };
-//    return false;
-//}
 
 function playeratk(attacker, defender){
 //    if (!checkready()){

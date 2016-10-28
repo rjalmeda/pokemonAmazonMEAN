@@ -19,6 +19,7 @@ module.exports = (function(){
                     newuser.eggs.push(Math.floor(Math.random()*143)+1);
                     newuser.eggs.push(Math.floor(Math.random()*143)+1);
                     console.log(newuser);
+                    newuser.currentPokemonIdx = 0;
                     newuser.gender = 'male';
                     newuser.password = password;
                     newuser.save(function(err1,data){

@@ -1,11 +1,8 @@
 $(document).ready(function(){
-//    Animation rate limiter
     var stop = false;
     var frameCount = 0;
     var $results = $("#results");
     var fps, fpsInterval, startTime, now, then, elapsed;
-
-    // initialize the timer variables and start the animation
 
     function startAnimating(fps) {
         fpsInterval = 1000 / fps;
@@ -15,23 +12,11 @@ $(document).ready(function(){
     }
     
     function animate() {
-
-        // request another frame
-        
         requestAnimationFrame(animate);
-        // calc elapsed time since last loop
-
         now = Date.now();
         elapsed = now - then;
-
-        // if enough time has elapsed, draw the next frame
-
         if (elapsed > fpsInterval) {
-
-            // Get ready for next frame by setting then=now, but also adjust for your
-            // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
             then = now - (elapsed % fpsInterval);
-            // Put your drawing code here
             displayWorld();
             movePlayer();
             if(document.getElementById('player') === null){
@@ -127,6 +112,10 @@ $(document).ready(function(){
     
     var disableControls = false;
     var battleTriggered = false;
+    
+    var enemeyReadyLow = false;
+    var enemeyReadyMid = false;
+    var enemeyReadyHigh = false;
     
     var passable = [1,2,4,5,6,7,8,9,10,11,12,13,14,17,19,20,21,26];
     
@@ -311,7 +300,8 @@ $(document).ready(function(){
         document.getElementById('player').style.top = wherePlayer.y+'px';
     };
     displayPlayer();
-    
+    var ae = angular.element('#ngview').scope();
+    console.log(ae);
     var movePlayer = function(){
         if(wherePlayer.movingX && !wherePlayer.movingY && wherePlayer.y%32 === 0){
             if(wherePlayer.movingX === 'left'){
@@ -395,6 +385,7 @@ $(document).ready(function(){
             probeSurroundings(wherePlayer.x, wherePlayer.y, function(){
                 if (playerSurroundings[1][1] === 2){
                     var encounter = Math.floor(Math.random()*101);
+                    var enemyReady = true;
                     if (encounter < encounterRate && !battleTriggered && enemyReady){
                         battleTriggered = true;
                         console.log('trigger battle')
@@ -405,17 +396,17 @@ $(document).ready(function(){
                             setTimeout(function(){
                                 $('.pokemon2img').show('slow', function(){
                                     $('#battleinfo2').show('fast');
-                                    $('#status').prepend(`A wild ${enemyPokemon.name} appears! \n\n`)
-                                    $('.cry2').html(`<audio autoplay><source src="assets/sounds/${enemyPokemon.id}.ogg"><source src="{assets/sounds/16.mp3"></audio>`);
+                                    $('#status').prepend(`A wild ${ae.enemyPokemonLow.name} appears! \n\n`)
+                                    $('.cry2').html(`<audio autoplay><source src="assets/sounds/${ae.enemyPokemonLow.id}.ogg"><source src="{assets/sounds/${ae.enemyPokemonLow.id}.mp3"></audio>`);
                                 })
                             }, 1500);
                             setTimeout(function(){
-                                $('#status').prepend(`Go get em' ${currentPokemon.name}! \n`)
+                                $('#status').prepend(`Go get em' ${ae.user.pokemons[0].name}! \n`)
                                 setTimeout(function(){
-                                    $('#status').prepend(`${currentPokemon.name}! \n`)
+                                    $('#status').prepend(`${ae.user.pokemons[0].name}! \n`)
                                     $('.pokemon1img').show('slow', function(){
                                     $('#battleinfo1').show('fast');
-                                    $('.cry1').html(`<audio autoplay><source src="assets/sounds/${currentPokemon.id}.ogg"><source src="{assets/sounds/25.mp3"></audio>`);
+                                    $('.cry1').html(`<audio autoplay><source src="assets/sounds/${ae.user.pokemons[0].id}.ogg"><source src="{assets/sounds/${ae.user.pokemons[0].id}.mp3"></audio>`);
                                     $('.battleControls').slideDown('slow');
                                 })}, 1250);
                             }, 3200);

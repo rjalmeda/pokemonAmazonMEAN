@@ -21,6 +21,7 @@ app.controller('splashController', function($scope, $location, loginFactory, pok
                     newpokemon.types = [];
                     newpokemon.abilities = [];
                     newpokemon.hp = data.data.stats[5].base_stat;
+                    newpokemon.currentHP = data.data.stats[5].base_stat;
                     newpokemon.spd = data.data.stats[0].base_stat;
                     newpokemon.def = data.data.stats[3].base_stat;
                     newpokemon.atk = data.data.stats[4].base_stat;

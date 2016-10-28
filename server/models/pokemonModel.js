@@ -8,6 +8,7 @@ var PokemonSchema = mongoose.Schema({
     abilities: Array,
     moves: Array,
     hp: Number,
+    currentHP: Number,
     atk: Number,
     def: Number,
     spcAtk: Number,
