@@ -299,3 +299,18 @@ poke Lab Tiles
     from { background-position: -32px -0px; }
     to { background-position: -64px -0px; }
 }
+
+/*NPCS!*/
+.npcDoc {
+    background-image: url(assets/pics/tileset/npc2.png);
+    background-position: -733px -30px;
+    z-index: 2;
+    position: absolute;
+}
+
+.npcGirlRight {
+    background-image: url(assets/pics/tileset/npc2.png);
+    background-position: -131px -653px;
+    z-index: 2;
+    position: absolute;
+}

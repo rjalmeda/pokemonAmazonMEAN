@@ -29,44 +29,8 @@ $(document).ready(function(){
     }
     
     
-    var maps = [
-        [
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        ] ,
-        [  
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,13,14,1,19,20,21,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,15,16,1,22,23,24,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,17,18,1,25,26,27,3,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,4,5,6,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,7,8,9,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,7,8,9,1,1,1,1,1],
-            [1,1,1,1,1,1,2,2,2,1,1,1,7,8,9,1,1,1,1,1],
-            [1,1,1,1,1,1,2,2,2,1,1,1,7,8,9,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,7,8,9,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,7,8,9,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,10,11,12,1,1,1,1,1],
-            [1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        ]   
-    ];
-    var currentMap = 1;
-    var world = maps[currentMap];
+    var currentMap = maps[1][1];
+    var world = currentMap;
     
     var displayWorld = function() {
         var worldOutput = '';
@@ -79,6 +43,7 @@ $(document).ready(function(){
                 if(world[i][j]==3) worldOutput += '<div class="tree standardTile"></div>';
                 if(world[i][j]==4) worldOutput += '<div class="pathTopLeft standardTile"></div>';
                 if(world[i][j]==5) worldOutput += '<div class="pathTop standardTile"></div>';
+                if(world[i][j]=='5GR') worldOutput += '<div class="pathTop standardTile"><div class="npcGirlRight standardTile"></div></div>';
                 if(world[i][j]==6) worldOutput += '<div class="pathTopRight standardTile"></div>';
                 if(world[i][j]==7) worldOutput += '<div class="pathLeft standardTile"></div>';
                 if(world[i][j]==8) worldOutput += '<div class="pathMiddle standardTile"></div>';
@@ -91,6 +56,7 @@ $(document).ready(function(){
                 if(world[i][j]==15) worldOutput += '<div class="grass standardTile"><div class="houseLeft standardTile"></div></div>';
                 if(world[i][j]==16) worldOutput += '<div class="grass standardTile"><div class="houseRight standardTile"></div></div>';
                 if(world[i][j]==17) worldOutput += '<div class="grass standardTile"><div class="houseDoor standardTile"><div class="houseBottomLeft standardTile"></div></div></div>';
+                if(world[i][j]=='17D') worldOutput += '<div class="grass standardTile"><div class="houseDoor standardTile"><div class="houseBottomLeft standardTile"><div class="npcDoc standardTile"></div></div></div></div>';
                 if(world[i][j]==18) worldOutput += '<div class="grass standardTile"><div class="houseBottomRight standardTile"></div></div>';
                 if(world[i][j]==19) worldOutput += '<div class="grass standardTile"><div class="pokeLabTopLeft standardTile"></div></div>';
                 if(world[i][j]==20) worldOutput += '<div class="grass standardTile"><div class="pokeLabTop standardTile"></div></div>';
@@ -125,8 +91,8 @@ $(document).ready(function(){
         lastDirX: 'right',
         lastDirY: 'down',
         lastDir: 'down',
-        x: 0,
-        y: 0
+        x: 11*32,
+        y: 2*32
     };
     
     var encounterRate = 15;
@@ -189,7 +155,7 @@ $(document).ready(function(){
         var pX = posX/32;
         var pY = posY/32;
         try {
-            playerSurroundings[0][0] = maps[currentMap][pY-1][pX-1];
+            playerSurroundings[0][0] = currentMap[pY-1][pX-1];
             if (playerSurroundings[0][0] === null){
                 playerSurroundings[0][0] = 0;
             }
@@ -201,7 +167,7 @@ $(document).ready(function(){
             playerSurroundings[0][0] = 0;
         }
         try {
-            playerSurroundings[0][1] = maps[currentMap][pY-1][pX];
+            playerSurroundings[0][1] = currentMap[pY-1][pX];
             if (playerSurroundings[0][1] === null){
                 playerSurroundings[0][1] = 0;
             }
@@ -213,7 +179,7 @@ $(document).ready(function(){
             playerSurroundings[0][1] = 0;
         }
         try {
-            playerSurroundings[0][2] = maps[currentMap][pY-1][pX+1];
+            playerSurroundings[0][2] = currentMap[pY-1][pX+1];
             if (playerSurroundings[0][2] === null){
                 playerSurroundings[0][2] = 0;
             }
@@ -225,7 +191,7 @@ $(document).ready(function(){
             playerSurroundings[0][2] = 0;
         }
         try {
-            playerSurroundings[1][0] = maps[currentMap][pY][pX-1];
+            playerSurroundings[1][0] = currentMap[pY][pX-1];
             if (playerSurroundings[1][0] === null){
                 playerSurroundings[1][0] = 0;
             }
@@ -237,13 +203,13 @@ $(document).ready(function(){
             playerSurroundings[1][0] = 0;
         }
         try {
-            playerSurroundings[1][1] = maps[currentMap][pY][pX];
+            playerSurroundings[1][1] = currentMap[pY][pX];
         }
         catch(err){
             playerSurroundings[1][1] = 0;
         }
         try {
-            playerSurroundings[1][2] = maps[currentMap][pY][pX+1];
+            playerSurroundings[1][2] = currentMap[pY][pX+1];
             if (playerSurroundings[1][2] === null){
                 playerSurroundings[1][2] = 0;
             }
@@ -255,7 +221,7 @@ $(document).ready(function(){
             playerSurroundings[1][2] = 0;
         }
         try {
-            playerSurroundings[2][0] = maps[currentMap][pY+1][pX-1];
+            playerSurroundings[2][0] = currentMap[pY+1][pX-1];
             if (playerSurroundings[2][0] === null){
                 playerSurroundings[2][0] = 0;
             }
@@ -267,7 +233,7 @@ $(document).ready(function(){
             playerSurroundings[2][0] = 0;
         }
         try {
-            playerSurroundings[2][1] = maps[currentMap][pY+1][pX];
+            playerSurroundings[2][1] = currentMap[pY+1][pX];
             if (playerSurroundings[2][1] === null){
                 playerSurroundings[2][1] = 0;
             }
@@ -279,7 +245,7 @@ $(document).ready(function(){
             playerSurroundings[2][1] = 0;
         }
         try {
-            playerSurroundings[2][2] = maps[currentMap][pY+1][pX+1];
+            playerSurroundings[2][2] = currentMap[pY+1][pX+1];
             if (playerSurroundings[2][2] === null){
                 playerSurroundings[2][2] = 0;
             }
@@ -300,8 +266,10 @@ $(document).ready(function(){
         document.getElementById('player').style.top = wherePlayer.y+'px';
     };
     displayPlayer();
+    
+    
     var ae = angular.element('#ngview').scope();
-    console.log(ae);
+
     var movePlayer = function(){
         if(wherePlayer.movingX && !wherePlayer.movingY && wherePlayer.y%32 === 0){
             if(wherePlayer.movingX === 'left'){
@@ -423,6 +391,17 @@ $(document).ready(function(){
             wherePlayer.movingY = false;
         }
     }
+    
+    var displayNPC = function(NPC){
+        document.getElementById(NPC.name).style.left = NPC.x+'px';
+        document.getElementById(NPC.name).style.top = NPC.y+'px';
+    };
+    
+    var boy = {
+        name : 'boy',
+        x : 0,
+        y : 0
+    };
     
     document.onkeydown = function(e){
         if (!disableControls){

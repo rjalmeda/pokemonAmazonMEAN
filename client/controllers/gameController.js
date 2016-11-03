@@ -3,11 +3,12 @@ app.controller('gameController', function($scope, $location, pokemonFactory, log
         loginFactory.checkUser(function(data){
             console.log(data);
             $scope.user = data.data.user;
+            console.log(user);
         })
         callback();
     }
     checkUser(function(){
-        console.log($scope);
+ 
     });                   
     $scope.battlePartialUrl = 'partials/battle.html';
     
@@ -15,7 +16,7 @@ app.controller('gameController', function($scope, $location, pokemonFactory, log
         console.log('generating random encounter pokemon');
         var randomPokeID = Math.floor(Math.random()*30+1);
         pokemonFactory.getNewPokemon(randomPokeID, function(data){
-            console.log('received random pokemon.  Generating info')
+//            console.log('received random pokemon.  Generating info')
             var randPokemon = {};
             var j,k;
             var done = false;
@@ -90,7 +91,7 @@ app.controller('gameController', function($scope, $location, pokemonFactory, log
                     } else {
                         $scope.enemyPokemonRandom = randPokemon;
                     };
-                    console.log($scope);
+
                     return randPokemon;
                 }
             });

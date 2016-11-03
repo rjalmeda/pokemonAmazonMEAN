@@ -1,9 +1,9 @@
 app.factory('pokemonFactory', function($http){
     var factory = {};
     factory.getNewPokemon = function(pokeid, callback){
-        console.log(pokeid);
+
         $http.get(`http://pokeapi.co/api/v2/pokemon/${pokeid}`).then(function(data){
-            console.log('returning')
+
             callback(data);
         });
     };

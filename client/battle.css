@@ -67,6 +67,8 @@ div.battleControls {
 button.attack {
     margin-left: 200px;
     margin-top: 60px;
+    padding: 75px;
+    font-size: 20pt;
 }
 div.pokemon1img {
     position: absolute;

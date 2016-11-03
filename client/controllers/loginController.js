@@ -13,7 +13,7 @@ app.controller('loginController', function($scope, $location, loginFactory){
         } else {
             loginFactory.login($scope.user, function(data){
                 currentPlayer = data.data.user
-                console.log(data.data);
+
                 $scope.user = {};
                 if (!data.data.user){
                     return alert(data.data.message);
