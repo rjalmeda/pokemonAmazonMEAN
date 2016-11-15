@@ -6,7 +6,7 @@ var pokemontype = {
         'normal':1,
         'fire':1,
         'water':1,
-        'electric':1,
+        'ele`ctric':1,
         'grass':1,
         'ice':1,
         'fighting':1,

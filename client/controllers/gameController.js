@@ -1,15 +1,27 @@
-app.controller('gameController', function($scope, $location, pokemonFactory, loginFactory){
+app.controller('gameController', function($scope, $location, pokemonFactory, loginFactory, amazonFactory){
     var checkUser = function(callback){
         loginFactory.checkUser(function(data){
             console.log(data);
             $scope.user = data.data.user;
-            console.log(user);
+            console.log($scope.user);
         })
         callback();
     }
     checkUser(function(){
  
-    });                   
+    });
+    
+//    amazon product api sample query
+    $scope.items = [];
+    $scope.item = {};
+//    $scope.item0; = "http://ecx.images-amazon.com/images/I/519SmJtgltL._SL160_.jpg";
+    $scope.searchItem = function(query){
+        console.log(query);
+        amazonFactory.searchForItems(query, function(data){
+            $scope.items = data.data.results;
+        })
+    };
+    
     $scope.battlePartialUrl = 'partials/battle.html';
     
     var generateRandomPokemon = function(level, difficulty){

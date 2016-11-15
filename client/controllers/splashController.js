@@ -14,6 +14,7 @@ app.controller('splashController', function($scope, $location, loginFactory, pok
             var popAllEggs = function(index){
                 var done = false;
                 pokemonFactory.getNewPokemon($scope.user.eggs[index], function(data){
+                    console.log(data);
                     var newpokemon = {};
                     newpokemon.name = data.data.name.toUpperCase();
                     newpokemon.id = data.data.id;

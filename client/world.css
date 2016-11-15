@@ -37,6 +37,7 @@ div.standardTile {
     border: 0px;
     display:inline-block;
     position: relative;
+    vertical-align: top;
 }
 .grass {
     background: url(assets/pics/tileset/PokeTileset.png);
@@ -221,6 +222,385 @@ poke Lab Tiles
 22, 23, 24
 25, 26, 27
 */
+
+.pokeMart28 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -254px 0px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart29 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -286px 0px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart30 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -318px 0px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart31 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -350px 0px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart32 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -382px 0px;
+    z-index: 2;
+    position: absolute;
+}
+
+.pokeMart33 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -254px -32px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart34 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -286px -32px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart35 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -318px -32px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart36 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -350px -32px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart37 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -382px -32px;
+    z-index: 2;
+    position: absolute;
+}
+
+.pokeMart38 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -254px -64px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart39 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -286px -64px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart40 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -318px -64px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart41 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -350px -64px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart42 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -382px -64px;
+    z-index: 2;
+    position: absolute;
+}
+
+.pokeMart43 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -254px -96px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart44 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -286px -96px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart45 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -318px -96px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart46 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -350px -96px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart47 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -382px -96px;
+    z-index: 2;
+    position: absolute;
+}
+
+.pokeMart48 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -254px -128px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart49 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -286px -128px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart50 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -318px -128px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart51 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -350px -128px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart52 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -382px -128px;
+    z-index: 2;
+    position: absolute;
+}
+
+.pokeMart53 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -254px -160px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart54 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -286px -160px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart55 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -318px -160px;
+    z-index: 0;
+    position: absolute;
+}
+.pokeMart56 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -350px -160px;
+    z-index: 2;
+    position: absolute;
+}
+.pokeMart57 {
+    background-image: url(assets/pics/tileset/PokeTileset.png);
+    background-position: -382px -160px;
+    z-index: 2;
+    position: absolute;
+}
+
+/*
+poke Mart Tiles
+28, 29, 30, 31, 32
+33, 34, 35, 36, 37
+38, 39, 40, 41, 42
+43, 44, 45, 46, 47
+48, 49, 50, 51, 52
+53, 54, 55, 56, 57
+*/
+
+/*inside Poke-Mart Tiles*/
+
+
+/* Poke-Mart Wall
+L   M   R
+58  61  63
+59  62  64
+60      65
+*/
+.pokeMartWallLeft1 {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: 0px 0px;
+    z-index: 2;
+    position: absolute;
+}
+
+.pokeMartWallLeft2 {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: 0px -32px;
+    z-index: 2;
+    position: absolute;
+}
+
+.pokeMartWallLeft3 {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: 0px -64px;
+    z-index: 2;
+    position: absolute;
+}
+
+.pokeMartWall1 {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: -32px 0px;
+    z-index: 2;
+    position: absolute;
+}
+
+.pokeMartWall2 {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: -32px -32px;
+    z-index: 2;
+    position: absolute;
+}
+
+.pokeMartWallRight1 {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: -64px 0px;
+    z-index: 2;
+    position: absolute;
+}
+
+.pokeMartWallRight2 {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: -64px -32px;
+    z-index: 2;
+    position: absolute;
+}
+
+.pokeMartWallRight3 {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: -64px -64px;
+    z-index: 2;
+    position: absolute;
+}
+
+/*Poke-mart Floor 66*/
+
+.pokeMartFloor {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: -32px -64px;
+    position: absolute;
+    vertical-align: top;
+}
+
+/*
+poke-mart checkout desk 
+    *   *   *   68
+    *   *   *   69
+    70  71  72  73
+    74  75  76  77
+    origin is 128x96 at pokeMart Tileset
+*/
+
+.pokeMartDesk68 {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: -224px -32px;
+    z-index: 2;
+    position: absolute;
+    vertical-align: top;
+}
+
+.pokeMartDesk69 {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: -224px -64px;
+    z-index: 2;
+    position: absolute;
+    vertical-align: top;
+}
+
+.pokeMartDesk70 {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: -128px -96px;
+    z-index: 2;
+    position: absolute;
+    vertical-align: top;
+}
+
+.pokeMartDesk71 {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: -160px -96px;
+    z-index: 2;
+    position: absolute;
+    vertical-align: top;
+}
+
+.pokeMartDesk72 {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: -192px -96px;
+    z-index: 2;
+    position: absolute;
+    vertical-align: top;
+}
+
+.pokeMartDesk73 {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: -224px -96px;
+    z-index: 2;
+    position: absolute;
+    vertical-align: top;
+}
+
+.pokeMartDesk74 {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: -128px -128px;
+    z-index: 2;
+    position: absolute;
+    vertical-align: top;
+}
+
+.pokeMartDesk75 {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: -160px -128px;
+    z-index: 2;
+    position: absolute;
+    vertical-align: top;
+}
+
+.pokeMartDesk76 {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: -192px -128px;
+    z-index: 2;
+    position: absolute;
+    vertical-align: top;
+}
+
+.pokeMartDesk77 {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: -224px -128px;
+    z-index: 2;
+    position: absolute;
+    vertical-align: top;
+}
+
+.pokeMartDeskItem{
+    z-index: 4;
+    margin-left: 12px;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    border: 2px solid black;
+    box-shadow: 2px 1px 1px;
+    transform: rotate(15deg);
+    vertical-align: top;
+}
+
+/*poke gym floor 67*/
+.pokeGymFloor {
+    background-image: url(assets/pics/tileset/pokeMart.png);
+    background-position: -256px 0px;
+    z-index: 0;
+    position: absolute;
+}
 
 #player {
     background: url(assets/pics/tileset/player.png);
