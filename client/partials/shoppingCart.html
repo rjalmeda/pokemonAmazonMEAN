@@ -1,0 +1,27 @@
+<div class="shoppingCart" ng-controller="cartController">
+    <table>
+    <thead>
+        <tr>
+            <th>Item Name</th>
+            <th>Qty</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in cart.items">
+            <td>{{item.Title}}</td>
+            <td>{{item.Quantity}}</td>
+            <td>{{item.Price.FormattedPrice}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><strong>Subtotal:</strong></td>
+            <td>{{cart.subtotal}}</td>
+        </tr>
+        <tr>
+            <td>Shopping Cart Link: <a ng-href='https://{{cart.cartURL}}' target="_blank">Cart</a></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+

@@ -38,7 +38,7 @@ app.controller('gameController', function($scope, $location, pokemonFactory, log
     
     $scope.addItemToCart = function(ASIN, callback){
         amazonFactory.addItemToCart(ASIN, function(data){
-            console.log(data);
+            callback(data);
         })
     };
     
@@ -49,6 +49,7 @@ app.controller('gameController', function($scope, $location, pokemonFactory, log
     }
     
     $scope.battlePartialUrl = 'partials/battle.html';
+    $scope.shoppingCartUrl = 'partials/shoppingCart.html';
     
     var generateRandomPokemon = function(level, difficulty){
         console.log('generating random encounter pokemon');

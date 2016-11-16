@@ -545,6 +545,21 @@ $(document).ready(function(){
         }
     }
     
+    var displayCart = function(){
+//        console.log(myCart);
+        ae.displayCart(function(data){
+//            console.log(data.data);
+//            console.log(ae);
+            var cart = data.data;
+            var newUrl = cart.cartURL;
+            newUrl = newUrl.substring(8);
+            cart.cartURL = newUrl;
+            console.log(newUrl);
+            ae.$$childTail.$$childTail.cart = cart;
+        })
+    }
+    
+    
     var addItemToCart = function(){
         if (wherePlayer.lastDir == "up"){
             console.log(playerSurroundings[0][1]);
@@ -553,6 +568,7 @@ $(document).ready(function(){
                 console.log(itemIDX);
                 ae.addItemToCart(pokeMartItems[itemIDX].ASIN, function(data){
                     console.log(data);
+                    displayCart();
 //                    if (data.errors){
 //                        myCart = {
 //                            CartId: data.data.errors.Cart.CartId,
@@ -594,12 +610,6 @@ $(document).ready(function(){
         }
     }
     
-    var displayCart = function(){
-//        console.log(myCart);
-        ae.displayCart(function(data){
-            console.log(data);
-        })
-    }
     
     var movePath = function(){
         var pathID = wherePlayer.x.toString()+ wherePlayer.y.toString();
