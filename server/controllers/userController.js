@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var Item = mongoose.model('Item');
 var bcrypt = require('bcryptjs');
 var Pokemon = mongoose.model('Pokemon');
 module.exports = (function(){

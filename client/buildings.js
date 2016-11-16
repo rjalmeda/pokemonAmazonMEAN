@@ -26,13 +26,13 @@ var buildings = [
             music: "assets/music/music/pokeMart.mp3",
             type: "store",
             storeQuery: {
-              actor: 'Samuel L. Jackson',
-              searchIndex: 'DVD',
-              audienceRating: 'R',
-              responseGroup: 'Images'
+              searchIndex: 'VideoGames',
+              keywords: 'pokemon',
+              sort: 'salesrank',
+              responseGroup: 'ItemAttributes,Offers,Images'
             },
             doors: [
-                ["35264",{
+                ["35264", {
                     map: maps[1][3],
                     playerX: 0,
                     playerY: 0

@@ -12,15 +12,41 @@ app.controller('gameController', function($scope, $location, pokemonFactory, log
     });
     
 //    amazon product api sample query
-    $scope.items = [];
-    $scope.item = {};
+//    $scope.items = [];
+//    $scope.item = {};
 //    $scope.item0; = "http://ecx.images-amazon.com/images/I/519SmJtgltL._SL160_.jpg";
-    $scope.searchItem = function(query){
-        console.log(query);
+    $scope.searchItem = function(query, callback){
+//        console.log(query);
         amazonFactory.searchForItems(query, function(data){
-            $scope.items = data.data.results;
+            var results = data.data.results.Items.Item;
+            console.log(results);
+            for (var h = 0; h < results.length; h++){
+                var newItem = {
+                    ASIN: results[h].ASIN,
+                    IMGURL: results[h].MediumImage.URL,
+                    DetailPageURL: results[h].DetailPageURL,
+                    SearchIndex: query.searchIndex,
+                    Keywords: query.keywords
+                }
+                amazonFactory.addItemToDB(newItem, function(data1){
+                    console.log(data1);
+                })
+            }
+            callback(data);
         })
     };
+    
+    $scope.addItemToCart = function(ASIN, callback){
+        amazonFactory.addItemToCart(ASIN, function(data){
+            console.log(data);
+        })
+    };
+    
+    $scope.displayCart = function(callback){
+        amazonFactory.displayCart(function(data){
+            callback(data);
+        })
+    }
     
     $scope.battlePartialUrl = 'partials/battle.html';
     

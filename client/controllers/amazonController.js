@@ -9,7 +9,7 @@ app.controller('amazonController', function($scope, $location, $routeParams, ama
           responseGroup: 'Images'
         }
         amazonFactory.searchForItems(query, function(data){
-            console.log(data.data);
+            console.log(data);
         })
         $scope.item = {};
     }

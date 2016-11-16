@@ -34,7 +34,11 @@ $(document).ready(function(){
     var bgMusic = new Audio();
     var pokeMartItems = [];
     for (var i = 0; i < 40; i++){
-        pokeMartItems[i] = ``;
+        pokeMartItems[i] = {
+            ASIN: "",
+            DetailPageURL: "",
+            IMGURL: ""
+        };
     };
 //    pokeMartItems[0] = `http://ecx.images-amazon.com/images/I/519SmJtgltL._SL160_.jpg`;
     bgMusic.src = currentMap.music;
@@ -121,7 +125,7 @@ $(document).ready(function(){
                 if(world[i][j]==72) worldOutput += '<div class="pokeMartFloor standardTile"><div class="pokeMartDesk72 standardTile"></div></div>';
                 if(world[i][j]==73) worldOutput += '<div class="pokeMartFloor standardTile"><div class="pokeMartDesk73 standardTile"></div></div>';
                 if(world[i][j]==74) worldOutput += '<div class="pokeMartFloor standardTile"><div class="pokeMartDesk74 standardTile"></div></div>';
-                if(world[i][j]=="74-0") worldOutput += `<div class="pokeMartFloor standardTile"><div class="pokeMartDesk74 standardTile"><img class="pokeMartDeskItem" src='${pokeMartItems[0]}' height="12");"></div></div>`;
+                if(world[i][j]=="74-0") worldOutput += `<div class="pokeMartFloor standardTile"><div class="pokeMartDesk74 standardTile"><img class="pokeMartDeskItem" src='${pokeMartItems[0].IMGURL}' height="12"></div></div>`;
                 if(world[i][j]==75) worldOutput += '<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile"></div></div>';
 //                if(world[i][j]=="75-1") worldOutput += `<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile"><div class="pokeMartDeskItem" style="background: url(${item0});"></div></div></div>`;
 //                if(world[i][j]=="75-2") worldOutput += '<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile item2"><img ng-src="{{$scope.item2}}" height="25"></div></div>';
@@ -132,10 +136,10 @@ $(document).ready(function(){
 //                if(world[i][j]=="75-7") worldOutput += '<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile item7"><img ng-src="{{$scope.item7}}" height="25"></div></div>';
 //                if(world[i][j]=="75-8") worldOutput += '<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile item8"><img ng-src="{{$scope.item8}}" height="25"></div></div>';
                 if(world[i][j]==76) worldOutput += '<div class="pokeMartFloor standardTile"><div class="pokeMartDesk76 standardTile"></div></div>';
-                if(world[i][j]==`76-9`) worldOutput += `<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile"><img class="pokeMartDeskItem" src='${pokeMartItems[9]}' height="12");"></div></div>`;
+                if(world[i][j]==`76-9`) worldOutput += `<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile"><img class="pokeMartDeskItem" src='${pokeMartItems[9].IMGURL}' height="12" href="${pokeMartItems[9].DetailPageURL}"></div></div>`;
                 if(world[i][j]==77) worldOutput += '<div class="pokeMartFloor standardTile"><div class="pokeMartDesk77 standardTile"></div></div>';
                 for (var k = 1; k < 9; k++){
-                    if(world[i][j]==`75-${k}`) worldOutput += `<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile"><img class="pokeMartDeskItem" src='${pokeMartItems[k]}' height="12");"></div></div>`;
+                    if(world[i][j]==`75-${k}`) worldOutput += `<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile"><img class="pokeMartDeskItem" src='${pokeMartItems[k].IMGURL}' height="12"></div></div>`;
                 };
 //                for (var k = 1; k < 10; k++){
 //                    if(world[i][j]==`75-${k}`) worldOutput += `<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile"><div class="pokeMartDeskItem"></div></div></div>`;
@@ -157,7 +161,9 @@ $(document).ready(function(){
     var enemeyReadyLow = false;
     var enemeyReadyMid = false;
     var enemeyReadyHigh = false;
-    
+//    if (myCart == undefined){
+//        var myCart = {};
+//    }
     var passable = [1,2,4,5,6,7,8,9,10,11,12,13,14,17,19,20,21,26,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,48,53,47,52,57,55,66,67,68,70,71,72];
     var paths = [4,5,6,7,8,9,10,11,12];
     var wherePlayer = {
@@ -361,7 +367,7 @@ $(document).ready(function(){
         if(wherePlayer.movingX && !wherePlayer.movingY && wherePlayer.y%32 === 0){
             if(wherePlayer.movingX === 'left'){
                 if(lookLeft()){
-                    wherePlayer.x -= 2;
+                    wherePlayer.x -= 4;
                     if(!($('#player').css('animation')=='walk-left 0.4s steps(3) infinite')){
                         $('#player').css('animation', 'walk-left 0.4s steps(3) infinite');
                     }
@@ -372,7 +378,7 @@ $(document).ready(function(){
             }
             if(wherePlayer.movingX === 'right'){
                 if(lookRight()){
-                    wherePlayer.x += 2;
+                    wherePlayer.x += 4;
                     if(!($('#player').css('animation')=='walk-right 0.4s steps(3) infinite')){
                         $('#player').css('animation', 'walk-right 0.4s steps(3) infinite');
                     }
@@ -385,7 +391,7 @@ $(document).ready(function(){
         if(wherePlayer.movingY && !wherePlayer.movingX && wherePlayer.x%32 === 0){
             if(wherePlayer.movingY === 'up'){
                 if(lookUp()){
-                    wherePlayer.y -= 2;
+                    wherePlayer.y -= 4;
                     if(!($('#player').css('animation')=='walk-up 0.4s steps(3) infinite')){
                         $('#player').css('animation', 'walk-up 0.4s steps(3) infinite');
                     }
@@ -396,7 +402,7 @@ $(document).ready(function(){
             }
             if(wherePlayer.movingY === 'down'){
                 if(lookDown()){
-                    wherePlayer.y += 2;
+                    wherePlayer.y += 4;
                     if(!($('#player').css('animation')=='walk-down 0.4s steps(3) infinite')){
                         $('#player').css('animation', 'walk-down 0.4s steps(3) infinite');
                     }
@@ -409,18 +415,18 @@ $(document).ready(function(){
         if (!wherePlayer.movingX){
             if(!(wherePlayer.x%32===0)){
                 if(wherePlayer.lastDirX === 'left'){
-                    wherePlayer.x -= 2;
+                    wherePlayer.x -= 4;
                 } else if (wherePlayer.lastDirX === 'right'){
-                    wherePlayer.x += 2;
+                    wherePlayer.x += 4;
                 }
             }
         }
         if (!wherePlayer.movingY){
             if(!(wherePlayer.y%32 === 0)){
                 if(wherePlayer.lastDirY === 'up'){
-                    wherePlayer.y -= 2;
+                    wherePlayer.y -= 4;
                 } else if (wherePlayer.lastDirY === 'down'){
-                    wherePlayer.y += 2;
+                    wherePlayer.y += 4;
                 }
             }
         }
@@ -522,17 +528,77 @@ $(document).ready(function(){
                 if (currentMap.type == "store"){
                     console.log(ae);
                     var query = currentMap.storeQuery;
-                    ae.searchItem(query);
-                    setTimeout(function(){
-                        for (var i = 0; i < 10; i++){
-                            pokeMartItems[i] = ae.items[i].MediumImage[0].URL[0];
-                            console.log(ae);
+                    ae.searchItem(query, function(data){
+                        var results = data.data.results.Items.Item;
+                        for (var i = 0; i < results.length; i++){
+//                            console.log(i);
+                            pokeMartItems[i].ASIN = results[i].ASIN;
+                            pokeMartItems[i].DetailPageURL = results[i].DetailPageURL;
+                            pokeMartItems[i].IMGURL = results[i].MediumImage.URL;
+//                            console.log(ae);
                         }
-                    },1000);
-//                    item0 = ae.item0;
+                    });
+                    
+
                 };
             };
         }
+    }
+    
+    var addItemToCart = function(){
+        if (wherePlayer.lastDir == "up"){
+            console.log(playerSurroundings[0][1]);
+            if (playerSurroundings[0][1].length > 3){
+               var itemIDX = playerSurroundings[0][1][3];
+                console.log(itemIDX);
+                ae.addItemToCart(pokeMartItems[itemIDX].ASIN, function(data){
+                    console.log(data);
+//                    if (data.errors){
+//                        myCart = {
+//                            CartId: data.data.errors.Cart.CartId,
+//                            HMAC: data.data.errors.Cart.HMAC,
+//                            items: data.data.errors.Cart.CartItems.CartItem,
+//                            subtotal: data.data.errors.Cart.CartItems.SubTotal.FormattedPrice,
+//                            url: data.data.errors.Cart.PurchaseURL
+//                        };
+//                    } else if (data.results){
+//                        myCart = {
+//                            CartId: data.data.results.Cart.CartId,
+//                            HMAC: data.data.results.Cart.HMAC,
+//                            items: data.data.results.Cart.CartItems.CartItem,
+//                            subtotal: data.data.results.Cart.CartItems.SubTotal.FormattedPrice,
+//                            url: data.data.results.Cart.PurchaseURL
+//                        };
+//                    }
+                });
+            }
+            
+        } else if (wherePlayer.lastDir == "down"){
+            console.log(playerSurroundings[2][1]);
+            if (playerSurroundings[2][1].length > 3){
+               var itemIDX = playerSurroundings[2][1][3];
+                console.log(itemIDX); 
+            }
+        } else if (wherePlayer.lastDir == "left"){
+            console.log(playerSurroundings[1][0]);
+            if (playerSurroundings[1][0].length  > 3){
+               var itemIDX = playerSurroundings[1][0][3];
+                console.log(itemIDX); 
+            }
+        } else if (wherePlayer.lastDir == "right"){
+            console.log(playerSurroundings[1][2]);
+            if (playerSurroundings[1][2].length > 3){
+               var itemIDX = playerSurroundings[1][2][3];
+                console.log(itemIDX); 
+            }
+        }
+    }
+    
+    var displayCart = function(){
+//        console.log(myCart);
+        ae.displayCart(function(data){
+            console.log(data);
+        })
     }
     
     var movePath = function(){
@@ -619,7 +685,14 @@ $(document).ready(function(){
                 wherePlayer.lastDirY = 'down';
                 wherePlayer.lastDir = 'down';
             };
+            if(e.keyCode==66){
+                addItemToCart();
+            }
+            if(e.keyCode==67){
+                displayCart();
+            }
         }
     };
-    startAnimating(60);
+    
+    startAnimating(30);
 })

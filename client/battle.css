@@ -58,17 +58,55 @@ div.battleControls {
     width: 600px;
     margin-left: 13px;
     margin-top: -20px;
-    height: 120px;
-    background-color:  red;
+    height: 180px;
+    background-color:  white;
     border: 3px solid black;
     border-radius: 10px;
     display: none;
+    vertical-align: top;
 }
-button.attack {
-    margin-left: 200px;
-    margin-top: 60px;
-    padding: 75px;
-    font-size: 20pt;
+div.nesController {
+    background: url(assets/pics/tileset/controller.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 400px;
+    height: 165px;
+    position: relative;
+}
+button.attackA {
+    position: absolute;
+    top: 100px;
+    left: 315px;
+    width: 30px;
+    height: 30px;
+    background: red;
+    border-radius: 15px;
+    border: 2px solid black;
+    box-shadow: 2px 2px darkred;
+}
+
+button.attackA:active {
+    box-shadow: 1px 1px darkred;
+    transform: translateY(2px);
+}
+button.attackB {
+    position: absolute;
+    top: 100px;
+    left: 265px;
+    width: 30px;
+    height: 30px;
+    background: red;
+    border-radius: 15px;
+    border: 2px solid black;
+    box-shadow: 2px 2px darkred;
+}
+
+button.attackB:active {
+    box-shadow: 1px 1px darkred;
+    transform: translateY(2px);
 }
 div.pokemon1img {
     position: absolute;
