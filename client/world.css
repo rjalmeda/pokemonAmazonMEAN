@@ -22,6 +22,18 @@ div#battlePartial {
     top: 0px;
     z-index: 100;
 }
+
+div#shoppingCart {
+/*
+    position: absolute;
+    left: 640px;
+    top: -480px;
+*/
+    display: inline;
+    width: 300px;
+    border: 3px solid block;
+}
+
 div.row {
     margin: 0px;
     height: 32px;
@@ -588,8 +600,10 @@ poke-mart checkout desk
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
+/*
     border: 2px solid black;
     box-shadow: 2px 1px 1px;
+*/
     transform: rotate(15deg);
     vertical-align: top;
 }

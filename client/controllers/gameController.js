@@ -18,19 +18,49 @@ app.controller('gameController', function($scope, $location, pokemonFactory, log
     $scope.searchItem = function(query, callback){
 //        console.log(query);
         amazonFactory.searchForItems(query, function(data){
-            var results = data.data.results.Items.Item;
-            console.log(results);
-            for (var h = 0; h < results.length; h++){
-                var newItem = {
-                    ASIN: results[h].ASIN,
-                    IMGURL: results[h].MediumImage.URL,
-                    DetailPageURL: results[h].DetailPageURL,
-                    SearchIndex: query.searchIndex,
-                    Keywords: query.keywords
-                }
-                amazonFactory.addItemToDB(newItem, function(data1){
-                    console.log(data1);
-                })
+            console.log(data);
+            if (data.data.results){
+                var results = data.data.results.Items.Item;
+                console.log(results);
+                for (var h = 0; h < results.length; h++){
+                    var newItem = {
+                        ASIN: results[h].ASIN,
+                        IMGURL: "https://s13.postimg.org/iisqran5z/Pokeball.png",
+                        DetailPageURL: results[h].DetailPageURL,
+                        SearchIndex: query.searchIndex,
+                        Keywords: query.keywords
+                    }
+                    try{
+                        newItem.IMGURL = results[h].MediumImage.URL;
+                    }
+                    catch(err){
+                        console.log(err);
+                    }
+                    amazonFactory.addItemToDB(newItem, function(data1){
+                        console.log(data1);
+                    })
+                }                
+            } else if (data.data.errors){
+                var results = data.data.errors.Items.Item;
+                console.log(results);
+                for (var h = 0; h < results.length; h++){
+                    var newItem = {
+                        ASIN: results[h].ASIN,
+                        IMGURL: "https://s13.postimg.org/iisqran5z/Pokeball.png",
+                        DetailPageURL: results[h].DetailPageURL,
+                        SearchIndex: query.searchIndex,
+                        Keywords: query.keywords
+                    }
+                    try{
+                        newItem.IMGURL = results[h].MediumImage.URL;
+                    }
+                    catch(err){
+                        console.log(err);
+                    }
+                    amazonFactory.addItemToDB(newItem, function(data1){
+                        console.log(data1);
+                    })
+                }  
             }
             callback(data);
         })

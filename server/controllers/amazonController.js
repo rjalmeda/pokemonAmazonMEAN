@@ -15,7 +15,7 @@ module.exports = (function(){
                 console.log(results);
                 console.log("****************");
                 return res.json({
-                    err: err,
+                    errors: err,
                     results: results
                 })
             })
@@ -50,15 +50,19 @@ module.exports = (function(){
                     ]
                 }, function(err, results){
                     if (err){
+                        if (err.Cart){
+                            req.session.CartId = err.Cart.CartId;
+                            req.session.HMAC = err.Cart.HMAC;
+                            req.session.Cart = err.Cart;
+                            req.session.save();
+                        }
                         return res.json({errors: err, results: results})
                     }
-                    if (results){
+                    else if (results){
                         if (results.Cart){
                             req.session.CartId = results.Cart.CartId;
                             req.session.HMAC = results.Cart.HMAC;
-                            req.session.items = results.Cart.CartItems.CartItem;
-                            req.session.subtotal = results.Cart.CartItems.SubTotal.FormattedPrice;
-                            req.session.cartURL = results.Cart.PurchaseURL;
+                            req.session.Cart = results.Cart;
                             req.session.save();
                         }
                     }
@@ -74,15 +78,19 @@ module.exports = (function(){
                     }]
                 }, function(err, results){
                     if (err){
+                        if (err.Cart){
+                            req.session.CartId = err.Cart.CartId;
+                            req.session.HMAC = err.Cart.HMAC;
+                            req.session.Cart = err.Cart;
+                            req.session.save();
+                        }
                         return res.json({errors: err, results: results})
                     }
-                    if (results){
+                    else if (results){
                         if (results.Cart){
                             req.session.CartId = results.Cart.CartId;
                             req.session.HMAC = results.Cart.HMAC;
-                            req.session.items = results.Cart.CartItems.CartItem;
-                            req.session.subtotal = results.Cart.CartItems.SubTotal.FormattedPrice;
-                            req.session.cartURL = results.Cart.PurchaseURL;
+                            req.session.Cart = results.Cart;
                             req.session.save();
                         }
                     }
@@ -95,17 +103,13 @@ module.exports = (function(){
                 return res.json({
                     CartId: req.session.CartId,
                     HMAC: req.session.HMAC,
-                    items: req.session.items,
-                    subtotal: req.session.subtotal,
-                    cartURL: req.session.cartURL
+                    Cart: req.session.Cart
                 })
             } else {
                 return res.json({
                     CartId: "",
                     HMAC: "",
-                    items: "",
-                    subtotal: "",
-                    cartURL: ""
+                    Cart: ""
                 })
             }
         }

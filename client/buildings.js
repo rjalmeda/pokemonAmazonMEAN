@@ -26,8 +26,8 @@ var buildings = [
             music: "assets/music/music/pokeMart.mp3",
             type: "store",
             storeQuery: {
-              searchIndex: 'VideoGames',
-              keywords: 'pokemon',
+              searchIndex: 'Toys',
+              keywords: 'pokeball',
               sort: 'salesrank',
               responseGroup: 'ItemAttributes,Offers,Images'
             },

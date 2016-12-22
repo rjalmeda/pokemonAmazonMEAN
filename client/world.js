@@ -125,7 +125,6 @@ $(document).ready(function(){
                 if(world[i][j]==72) worldOutput += '<div class="pokeMartFloor standardTile"><div class="pokeMartDesk72 standardTile"></div></div>';
                 if(world[i][j]==73) worldOutput += '<div class="pokeMartFloor standardTile"><div class="pokeMartDesk73 standardTile"></div></div>';
                 if(world[i][j]==74) worldOutput += '<div class="pokeMartFloor standardTile"><div class="pokeMartDesk74 standardTile"></div></div>';
-                if(world[i][j]=="74-0") worldOutput += `<div class="pokeMartFloor standardTile"><div class="pokeMartDesk74 standardTile"><img class="pokeMartDeskItem" src='${pokeMartItems[0].IMGURL}' height="12"></div></div>`;
                 if(world[i][j]==75) worldOutput += '<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile"></div></div>';
 //                if(world[i][j]=="75-1") worldOutput += `<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile"><div class="pokeMartDeskItem" style="background: url(${item0});"></div></div></div>`;
 //                if(world[i][j]=="75-2") worldOutput += '<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile item2"><img ng-src="{{$scope.item2}}" height="25"></div></div>';
@@ -136,10 +135,11 @@ $(document).ready(function(){
 //                if(world[i][j]=="75-7") worldOutput += '<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile item7"><img ng-src="{{$scope.item7}}" height="25"></div></div>';
 //                if(world[i][j]=="75-8") worldOutput += '<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile item8"><img ng-src="{{$scope.item8}}" height="25"></div></div>';
                 if(world[i][j]==76) worldOutput += '<div class="pokeMartFloor standardTile"><div class="pokeMartDesk76 standardTile"></div></div>';
-                if(world[i][j]==`76-9`) worldOutput += `<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile"><img class="pokeMartDeskItem" src='${pokeMartItems[9].IMGURL}' height="12" href="${pokeMartItems[9].DetailPageURL}"></div></div>`;
+                if(world[i][j]=="74-0") worldOutput += `<div class="pokeMartFloor standardTile"><div class="pokeMartDesk74 standardTile"><img class="pokeMartDeskItem" src='${pokeMartItems[0].IMGURL}' height="16"></div></div>`;
+                if(world[i][j]==`76-9`) worldOutput += `<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile"><img class="pokeMartDeskItem" src='${pokeMartItems[9].IMGURL}' height="16" href="${pokeMartItems[9].DetailPageURL}"></div></div>`;
                 if(world[i][j]==77) worldOutput += '<div class="pokeMartFloor standardTile"><div class="pokeMartDesk77 standardTile"></div></div>';
                 for (var k = 1; k < 9; k++){
-                    if(world[i][j]==`75-${k}`) worldOutput += `<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile"><img class="pokeMartDeskItem" src='${pokeMartItems[k].IMGURL}' height="12"></div></div>`;
+                    if(world[i][j]==`75-${k}`) worldOutput += `<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile"><img class="pokeMartDeskItem" src='${pokeMartItems[k].IMGURL}' height="16"></div></div>`;
                 };
 //                for (var k = 1; k < 10; k++){
 //                    if(world[i][j]==`75-${k}`) worldOutput += `<div class="pokeMartFloor standardTile"><div class="pokeMartDesk75 standardTile"><div class="pokeMartDeskItem"></div></div></div>`;
@@ -534,8 +534,14 @@ $(document).ready(function(){
 //                            console.log(i);
                             pokeMartItems[i].ASIN = results[i].ASIN;
                             pokeMartItems[i].DetailPageURL = results[i].DetailPageURL;
+                            console.log(i, results[i].MediumImage)
+                            if (results[i].MediumImage === undefined){
+                                pokeMartItems[i].IMGURL = "https://s13.postimg.org/iisqran5z/Pokeball.png";
+                            }
+                            else {
                             pokeMartItems[i].IMGURL = results[i].MediumImage.URL;
-//                            console.log(ae);
+                            }
+                            console.log(ae);
                         }
                     });
                     
@@ -545,20 +551,28 @@ $(document).ready(function(){
         }
     }
     
-    var displayCart = function(){
+    var sendCart = function(){
 //        console.log(myCart);
         ae.displayCart(function(data){
 //            console.log(data.data);
 //            console.log(ae);
             var cart = data.data;
-            var newUrl = cart.cartURL;
-            newUrl = newUrl.substring(8);
-            cart.cartURL = newUrl;
-            console.log(newUrl);
+            console.log(cart);
+            var FormattedURL = "";
+            if (cart.Cart.PurchaseURL){
+                FormattedURL = cart.Cart.PurchaseURL;
+                FormattedURL = FormattedURL.substring(8);
+            }
+            cart.FormattedURL = FormattedURL;
+            console.log(FormattedURL);
             ae.$$childTail.$$childTail.cart = cart;
+            
         })
     }
     
+    var toggleCart = function(){
+        $('.shoppingCart').toggle("slide", {direction: "down"}, 1000);
+    }
     
     var addItemToCart = function(){
         if (wherePlayer.lastDir == "up"){
@@ -568,7 +582,8 @@ $(document).ready(function(){
                 console.log(itemIDX);
                 ae.addItemToCart(pokeMartItems[itemIDX].ASIN, function(data){
                     console.log(data);
-                    displayCart();
+                    sendCart();
+                    $('.shoppingCart').show('slow');
 //                    if (data.errors){
 //                        myCart = {
 //                            CartId: data.data.errors.Cart.CartId,
@@ -699,7 +714,7 @@ $(document).ready(function(){
                 addItemToCart();
             }
             if(e.keyCode==67){
-                displayCart();
+                toggleCart();
             }
         }
     };
