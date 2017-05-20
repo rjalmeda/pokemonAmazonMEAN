@@ -1,4 +1,4 @@
-app.factory('pokemonFactory', function($https){
+app.factory('pokemonFactory', function($https, $http){
     var factory = {};
     factory.getNewPokemon = function(pokeid, callback){
 
