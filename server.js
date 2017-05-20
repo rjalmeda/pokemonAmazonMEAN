@@ -18,19 +18,6 @@ app.use(session({
 require('./server/config/mongoose.js');
 require('./server/config/routes.js')(app);
 
-var server = app.listen(serverport, function(){
+app.listen(serverport, function(){
     console.log(`Listening on port ${serverport}`);
-});
-
-var io = require('socket.io').listen(server);
-
-io.sockets.on('connection', function(socket){
-    console.log(`You are connected, SocketID ${socket.id}`);
-    
-    socket.on('initialize', function(data){
-        if(data.connected){
-            console.log(data);
-            socket.emit('serverresponse', ({connected: true, message: 'dude you are online and connected with socket'}));
-        }
-    })
 });
