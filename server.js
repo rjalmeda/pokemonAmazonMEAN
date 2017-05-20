@@ -6,8 +6,8 @@ var app = express();
 var serverport = process.env.PORT || 5000;
 
 app.use(bp.json());
-app.use(express.static(path.join(__dirname, '/client')));
-app.use(express.static(path.join(__dirname, '/bower_components')));
+app.use(express.static(path.join(process.env.PWD, '/client')));
+app.use(express.static(path.join(process.env.PWD, '/bower_components')));
 app.use(session({
   secret: 'timberdog',
   resave: false,
