@@ -1,8 +1,8 @@
-app.factory('pokemonFactory', function($https, $http){
+app.factory('pokemonFactory', function($http){
     var factory = {};
     factory.getNewPokemon = function(pokeid, callback){
 
-        $https.get(`pokeapi.co/api/v2/pokemon/${pokeid}`).then(function(data){
+        $http.get(`https://pokeapi.co/api/v2/pokemon/${pokeid}`).then(function(data){
 
             callback(data);
         });
