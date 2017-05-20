@@ -1,10 +1,9 @@
 var mongoose = require('mongoose');
-var amazonKey = require('./amazonKey.js');
 var amazon  = require('amazon-affiliate-api'),
     client  = amazon.createClient({
-        awsId: amazonKey.awsId,
-        awsSecret: amazonKey.awsSecret,
-        awsTag: amazonKey.awsTag
+        awsId: process.env.AWS_ID,
+        awsSecret: process.env.AWS_SECRET,
+        awsTag: process.env.AWS_TAG
     });
 var Item = mongoose.model('Item');
 module.exports = (function(){
