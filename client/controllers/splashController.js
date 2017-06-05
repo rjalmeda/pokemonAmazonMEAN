@@ -43,8 +43,10 @@ app.controller('splashController', function($scope, $location, loginFactory, pok
                                     $scope.user = data.data.user;
                                     console.log(data);
                                     if($scope.user.eggs.length===0){
-                                        $location.url('/world');
                                         console.log('moving to the world');
+                                        console.log($location.url());
+                                        $location.url('/world');
+                                        
                                     }
                                 })
                                 
@@ -59,12 +61,11 @@ app.controller('splashController', function($scope, $location, loginFactory, pok
                                 $scope.newpokemons.push(newpokemon);
                                 $scope.user = data.data.user;
                                 console.log(data);
-                                setTimeout(function(){
-                                    if(data.data.user.eggs.length === 0){
-                                        console.log('trying to move to the world');
-                                        $location.url('/world');                        
-                                    };
-                                }, 2500)
+                                if(data.data.user.eggs.length === 0){
+                                    console.log('trying to move to the world');
+                                    console.log($location.url());
+                                    $location.url('/world');                        
+                                };
                             })
                         }
                     };
