@@ -15,8 +15,8 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "^1.5.6",
+    "angular": "1.5.6",
     "angular-route": "1.5.6",
-    "bcryptjs": "^2.3.0"
+    "bcryptjs": "2.3.0"
   }
 }

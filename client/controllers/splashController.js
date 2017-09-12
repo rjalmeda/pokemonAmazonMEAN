@@ -5,6 +5,8 @@ app.controller('splashController', function($scope, $location, loginFactory, pok
         
     };
     
+    $scope.loadingComplete = false;
+    
     var checkUser = function(callback){
         loginFactory.checkUser(function(data){
             console.log(data);
@@ -37,16 +39,15 @@ app.controller('splashController', function($scope, $location, loginFactory, pok
                             newpokemon.moves.push(move.data);
                             console.log('getting move - ', j+1);
                             if(j==1 && k == data.data.types.length && !done){
-                                done = done;
                                 pokemonFactory.popEgg(newpokemon, function(data){
                                     $scope.newpokemons.push(newpokemon);
                                     $scope.user = data.data.user;
                                     console.log(data);
                                     if($scope.user.eggs.length===0){
-                                        console.log('moving to the world');
-                                        console.log($location.url());
-                                        $location.url('/world');
-                                        
+//                                        console.log('moving to the world');
+//                                        console.log($location.url());
+//                                        $location.url('/world');
+                                        $scope.loadingComplete = true;
                                     }
                                 })
                                 
@@ -56,15 +57,16 @@ app.controller('splashController', function($scope, $location, loginFactory, pok
                     for (var k = 0; k<data.data.types.length; k++){
                         newpokemon.types.push(data.data.types[k].type.name);
                         if(j==2 && k == data.data.types.length - 1 && !done){
-                            done = done;
+//                            done = done;
                             pokemonFactory.popEgg(newpokemon, function(data){
                                 $scope.newpokemons.push(newpokemon);
                                 $scope.user = data.data.user;
                                 console.log(data);
                                 if(data.data.user.eggs.length === 0){
-                                    console.log('trying to move to the world');
-                                    console.log($location.url());
-                                    $location.url('/world');                        
+//                                    console.log('trying to move to the world');
+//                                    console.log($location.url());
+//                                    $location.url('/world');
+                                    $scope.loadingComplete = true;
                                 };
                             })
                         }
