@@ -15,6 +15,10 @@ app.controller('gameController', function($scope, $location, pokemonFactory, log
 //    $scope.items = [];
 //    $scope.item = {};
 //    $scope.item0; = "http://ecx.images-amazon.com/images/I/519SmJtgltL._SL160_.jpg";
+    $scope.enemyPokemonLow = {};
+    $scope.enemyPokemonMid = {};
+    $scope.enemyPokemonHigh = {};
+    $scope.enemyPokemonRandom = {};
     $scope.searchItem = function(query, callback){
 //        console.log(query);
         amazonFactory.searchForItems(query, function(data){
@@ -81,98 +85,108 @@ app.controller('gameController', function($scope, $location, pokemonFactory, log
     $scope.battlePartialUrl = 'partials/battle.html';
     $scope.shoppingCartUrl = 'partials/shoppingCart.html';
     
-    var generateRandomPokemon = function(level, difficulty){
-        console.log('generating random encounter pokemon');
-        var randomPokeID = Math.floor(Math.random()*30+1);
-        pokemonFactory.getNewPokemon(randomPokeID, function(data){
-//            console.log('received random pokemon.  Generating info')
-            var randPokemon = {};
-            var j,k;
-            var done = false;
-            randPokemon.name = data.data.name.toUpperCase();
-            randPokemon.id = data.data.id;
-            randPokemon.moves = [];
-            randPokemon.types = [];
-            randPokemon.abilities = [];
-            randPokemon.hp = data.data.stats[5].base_stat;
-            randPokemon.currentHP = data.data.stats[5].base_stat;
-            randPokemon.spd = data.data.stats[0].base_stat;
-            randPokemon.def = data.data.stats[3].base_stat;
-            randPokemon.atk = data.data.stats[4].base_stat;
-            randPokemon.spcAtk = data.data.stats[2].base_stat;
-            randPokemon.spcDef = data.data.stats[1].base_stat;
-            randPokemon.lvl = level;
-            randPokemon.xp = 0;
-            // Sounds //
-
-            randPokemon.ogg = './assets/sounds/'+randPokemon.id+'.ogg';
-            randPokemon.mp3 = './assets/sounds/'+randPokemon.id+'.mp3';
-            for (j = 0; j<2; j++){
-                pokemonFactory.getMove(data.data.moves[j].move.url, function(move){
-                    randPokemon.moves.push(move.data);
-                    if(randPokemon.moves.length === 2 && randPokemon.types.length === data.data.types.length && randPokemon.abilities.length === 1){
-                        console.log(randPokemon);
-                        console.log('Enemy Pokemon is Ready!');
-                        if (difficulty === 'low'){
-                            $scope.enemyPokemonLow = randPokemon;
-                        } else if (difficulty === 'mid'){
-                            $scope.enemeyPokemonMid = randPokemon;
-                        } else if (difficulty === 'high'){
-                            $scope.enemyPokemonHigh = randPokemon;
-                        } else {
-                            $scope.enemyPokemonRandom = randPokemon;
-                        };
-                        console.log($scope);
-                        return randPokemon;
-                    }
-                })
-            };
-            for (k = 0; k<data.data.types.length; k++){
-                randPokemon.types.push(data.data.types[k].type.name);
-                if(randPokemon.moves.length === 2 && randPokemon.types.length === data.data.types.length && randPokemon.abilities.length === 1){
-                    console.log(randPokemon);
-                    console.log('Enemy Pokemon is Ready!');
-                    if (difficulty === 'low'){
-                        $scope.enemyPokemonLow = randPokemon;
-                    } else if (difficulty === 'mid'){
-                        $scope.enemeyPokemonMid = randPokemon;
-                    } else if (difficulty === 'high'){
-                        $scope.enemyPokemonHigh = randPokemon;
-                    } else {
-                        $scope.enemyPokemonRandom = randPokemon;
-                    };
-                    console.log($scope);
-                    return randPokemon;
-                }
-            };
-            pokemonFactory.getAbility(data.data.abilities[0].ability.url, function(ability){
-                randPokemon.abilities.push(ability.data);
-                if(randPokemon.moves.length === 2 && randPokemon.types.length === data.data.types.length && randPokemon.abilities.length === 1){
-                    console.log(randPokemon);
-                    console.log('Enemy Pokemon is Ready!');
-                    $scope.enemyPokemonLow = randPokemon;
-                    if (difficulty === 'low'){
-                        $scope.enemyPokemonLow = randPokemon;
-                    } else if (difficulty === 'mid'){
-                        $scope.enemeyPokemonMid = randPokemon;
-                    } else if (difficulty === 'high'){
-                        $scope.enemyPokemonHigh = randPokemon;
-                    } else {
-                        $scope.enemyPokemonRandom = randPokemon;
-                    };
-
-                    return randPokemon;
+    var generatePokemon = function(pokeId, callback){
+        pokemonFactory.getNewPokemon(pokeId, function(data){
+            console.log(data);
+            if(data.cached){
+                console.log("found cached");
+                return callback(data.data.data);
+            } else {
+                var newpokemon = {};
+                newpokemon.name = data.data.name.toUpperCase();
+                newpokemon.id = data.data.id;
+                newpokemon.moves = [];
+                newpokemon.types = [];
+                newpokemon.abilities = [];
+                newpokemon.hp = data.data.stats[5].base_stat;
+                newpokemon.currentHP = data.data.stats[5].base_stat;
+                newpokemon.spd = data.data.stats[0].base_stat;
+                newpokemon.def = data.data.stats[3].base_stat;
+                newpokemon.atk = data.data.stats[4].base_stat;
+                newpokemon.spcAtk = data.data.stats[2].base_stat;
+                newpokemon.spcDef = data.data.stats[1].base_stat;
+                newpokemon.lvl = 1;
+                newpokemon.xp = 0;
+                newpokemon.ogg = './assets/sounds/'+newpokemon.id+'.ogg';
+                newpokemon.mp3 = './assets/sounds/'+newpokemon.id+'.mp3';
+                for (var j = 0; j<2; j++){
+                    console.log(j);
+                    console.log('getting move - ', j+1);
+                    pokemonFactory.getMove(data.data.moves[j].move.url, function(move){
+                        console.log(move.data);
+                        newpokemon.moves.push(move.data);
+                        if(newpokemon.moves.length == 2){
+                            console.log("next step");
+                            for (var k = 0; k < data.data.types.length; k++){
+                                newpokemon.types.push(data.data.types[k].type.name);
+                                if(k == data.data.types.length - 1){
+                                    console.log("last step");
+                                    pokemonFactory.getAbility(data.data.abilities[0].ability.url, function(ability){
+                                        newpokemon.abilities.push(ability.data);
+                                        pokemonFactory.cachePokemon(newpokemon, function(data){
+                                            console.log("pokemon cached");
+                                            return callback(newpokemon);
+                                        })
+                                    })
+                                }
+                            }
+                        }
+                    })
+                };
+            }
+        })
+    }
+    
+    var generateRandomPokemon = function(firstPokeId, lastPokeId, difficulty){
+        console.log("generating " + difficulty + " difficulty encounter pokemon");
+        var enemyPokemon;
+        var randomRange;
+        var rangeOffset;
+        if(firstPokeId === lastPokeId){
+            enemyPokemon = generatePokemon(firstPokeId);
+        } else if (firstPokeId < lastPokeId){
+            randomRange = lastPokeId - firstPokeId;
+            rangeOffset = firstPokeId;
+            generatePokemon(Math.floor(Math.random()*randomRange+rangeOffset), function(newPokemon){
+                enemyPokemon = newPokemon;
+                if(difficulty == "low"){
+                    $scope.enemyPokemonLow = enemyPokemon;
+                } else if(difficulty == "mid"){
+                    $scope.enemyPokemonMid = enemyPokemon;
+                } else if(difficulty == "high"){
+                    $scope.enemyPokemonHigh = enemyPokemon;
+                } else if(difficulty == "random"){
+                    $scope.enemyPokemonRandom = enemyPokemon;
+                } else {
+                    return console.log("no where to put random pokemon");
                 }
             });
-        });
+        } else {
+            randomRange = firstPokeId - lastPokeId;
+            rangeOffset = lastPokeId;
+            generatePokemon(Math.floor(Math.random()*randomRange+rangeOffset), function(newPokemon){
+                enemyPokemon = newPokemon;
+                if(difficulty == "low"){
+                    $scope.enemyPokemonLow = enemyPokemon;
+                } else if(difficulty == "mid"){
+                    $scope.enemyPokemonMid = enemyPokemon;
+                } else if(difficulty == "high"){
+                    $scope.enemyPokemonHigh = enemyPokemon;
+                } else if(difficulty == "random"){
+                    $scope.enemyPokemonRandom = enemyPokemon;
+                } else {
+                    return console.log("no where to put random pokemon");
+                }
+            });
+        }
+        
+        
     };
-    $scope.enemyPokemonLow = {};
-//    $scope.enemyPokemonMid = {};
-//    $scope.enemyPokemonHigh = {};
-//    $scope.enemyPokemonRandom = {};
-    generateRandomPokemon(1, 'low');
-//    generateRandomPokemon(2, 'mid');
-//    generateRandomPokemon(5, 'high');
+    
+    generateRandomPokemon(1, 721, 'low');
+    generateRandomPokemon(200, 400, 'mid');
+    generateRandomPokemon(401, 721, 'high');
+    generateRandomPokemon(1, 721, "random");
     
     // game Engine
     var pokemontype = {

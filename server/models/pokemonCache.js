@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var PokemonCacheModel = mongoose.Schema({
-    name: String,
-    id: Number,
+    url: String,
     data: Object
 })
 mongoose.model('PokemonCache', PokemonCacheModel);

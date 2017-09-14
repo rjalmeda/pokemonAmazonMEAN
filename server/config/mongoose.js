@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/cameradb');
+mongoose.connect('mongodb://localhost/pokeMean');
 var fs = require('fs');
 var path = require('path');
 var models_path = path.join(__dirname, './../models');

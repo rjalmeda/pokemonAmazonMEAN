@@ -12,9 +12,9 @@ app.factory('pokemonFactory', function($http){
     
     factory.getNewPokemon = function(pokeid, callback){
         $http.get('/getNewPokemon/'+pokeid).then(function(data){
-            callback(data);
+            callback(data.data);
         })
-    }
+    };
     
     factory.getAbility = function(abilityUrl, callback){
         $http.get(abilityUrl).then(function(data){
@@ -22,12 +22,17 @@ app.factory('pokemonFactory', function($http){
         })
     };
     factory.getMove = function(moveUrl, callback){
-        $http.get(moveUrl).then(function(data){
-            callback(data);
+        $http.post('/getMove', {url: moveUrl}).then(function(data){
+            callback(data.data);
         })
     };
     factory.popEgg = function(pokemon, callback){
         $http.post('/popEgg', pokemon).then(function(data){
+            callback(data);
+        })
+    };
+    factory.cachePokemon = function(pokemon, callback){
+        $http.post('/cachePokemon', pokemon).then(function(data){
             callback(data);
         })
     };
