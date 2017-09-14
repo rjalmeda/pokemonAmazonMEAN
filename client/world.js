@@ -17,7 +17,7 @@ $(document).ready(function(){
         elapsed = now - then;
         if (elapsed > fpsInterval) {
             then = now - (elapsed % fpsInterval);
-            displayWorld();
+            
             movePlayer();
             if(document.getElementById('player') === null){
                 animate = '';
@@ -150,7 +150,6 @@ $(document).ready(function(){
         $('div.world').html(worldOutput);
         
     };
-    displayWorld();
     
     $('#battlePartial').hide();
     
@@ -518,7 +517,8 @@ $(document).ready(function(){
                 wherePlayer.lastDir = currentMap.playerLocation.facing;
                 probeSurroundings(wherePlayer.x, wherePlayer.y, function(){
                     console.log('moved through a door');
-                })
+                });
+                displayWorld();
                 if (currentMap.music){
                     if (bgMusic.src != currentMap.music){
                         bgMusic.src = currentMap.music;
@@ -537,11 +537,12 @@ $(document).ready(function(){
                             console.log(i, results[i].MediumImage)
                             if (results[i].MediumImage === undefined){
                                 pokeMartItems[i].IMGURL = "https://s13.postimg.org/iisqran5z/Pokeball.png";
+                                displayWorld();
                             }
                             else {
-                            pokeMartItems[i].IMGURL = results[i].MediumImage.URL;
+                                pokeMartItems[i].IMGURL = results[i].MediumImage.URL;
+                                displayWorld();
                             }
-                            console.log(ae);
                         }
                     });
                     
@@ -640,7 +641,8 @@ $(document).ready(function(){
                 wherePlayer.y = playerStartY;
                 probeSurroundings(wherePlayer.x, wherePlayer.y, function(){
                     console.log('moved through a path');
-                })
+                });
+                displayWorld();
             }
         }
     }
@@ -718,6 +720,6 @@ $(document).ready(function(){
             }
         }
     };
-    
-    startAnimating(30);
+    displayWorld();
+    startAnimating(60);
 })
